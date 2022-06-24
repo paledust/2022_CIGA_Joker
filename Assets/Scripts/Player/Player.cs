@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
+    public int PlayerIndex = 1;
     [SerializeField] private float MoveSpeed = 1;
     [SerializeField] private float detectRange = 0.2f;
-    [SerializeField] private int CoinAmount = 3;
+    [SerializeField] public int CoinAmount = 3;
+    [SerializeField] public int bombAmount = 3;
     private Vector2 direction;
     private Vector3 facingDirection = Vector3.up;
     private Rigidbody2D m_rigid;
@@ -24,29 +26,29 @@ public class Player : MonoBehaviour
         direction = value.Get<Vector2>();
         if(direction != Vector2.zero) facingDirection = direction;
     }
-    void OnPutIn(InputValue value){
+    void OnPutInCoin(){
         //To Do:检测有无可以放入的对象
         InteractableObject interactableObj = DetectInteractable(new Ray2D(transform.position, facingDirection));
         if(interactableObj != null){
-            interactableObj.OnInteract(INTERACTABLE_TYPE.PUT_IN);
+            interactableObj.OnInteract(INTERACTABLE_TYPE.PUT_IN_COIN, this);
         }
-        Debug.Log("Put In Stuff");
     }
-    void OnTakeOut(InputValue value){
+    void OnPutInBomb(){
+        //To Do:检测有无可以放入的对象
+        InteractableObject interactableObj = DetectInteractable(new Ray2D(transform.position, facingDirection));
+        if(interactableObj != null){
+            interactableObj.OnInteract(INTERACTABLE_TYPE.PUT_IN_BOMB, this);
+        }
+    }
+    void OnTakeOutStuff(InputValue value){
         //To Do:检测有无可以拿去的对象
         InteractableObject interactableObj = DetectInteractable(new Ray2D(transform.position, facingDirection));
         if(interactableObj != null){
-            interactableObj.OnInteract(INTERACTABLE_TYPE.TAKE_OUT);
+            interactableObj.OnInteract(INTERACTABLE_TYPE.TAKE_OUT_STUFF, this);
         }
-        Debug.Log("Take Out Stuff");
     }
     void OnAttack(InputValue value){
-        //To Do:检测有无可以攻击的对象
-        InteractableObject interactableObj = DetectInteractable(new Ray2D(transform.position, facingDirection));
-        if(interactableObj != null){
-            interactableObj.OnInteract(INTERACTABLE_TYPE.ATTACK);
-        }
-        Debug.Log("Attack");
+        //To Do:检测有无可以攻击的玩家
     }
     InteractableObject DetectInteractable(Ray2D ray){
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange, Service.InteractableLayer);

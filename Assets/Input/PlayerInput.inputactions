@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PutIn",
+                    "name": "PutInCoin",
                     "type": "Button",
                     "id": "c772048b-675c-43e5-936c-abf265ced51b",
                     "expectedControlType": "Button",
@@ -24,7 +24,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TakeOut",
+                    "name": "PutInBomb",
+                    "type": "Button",
+                    "id": "6b4eee52-899c-4c20-a25e-8e03fd4fe8e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TakeOutStuff",
                     "type": "Button",
                     "id": "7949eceb-b506-4c30-8e28-109f9321e46d",
                     "expectedControlType": "Button",
@@ -105,29 +114,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PutIn",
+                    "action": "PutInCoin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "f0a4e4b3-f4be-4346-a7aa-c74b47845cea",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TakeOut",
+                    "action": "TakeOutStuff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "e630500f-c889-471b-bd06-a040833c0458",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a45f379-f4a7-4a83-b1ad-ed88ac96ea95",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PutInBomb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -147,7 +167,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PutIn",
+                    "name": "PutInCoin",
                     "type": "Button",
                     "id": "9dc6ee78-94ec-42cd-a78b-ab04f681db06",
                     "expectedControlType": "Button",
@@ -156,7 +176,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "TakeOut",
+                    "name": "PutInBomb",
+                    "type": "Button",
+                    "id": "a06253e7-85b9-4147-b382-14ad5dfd6dcb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TakeOutStuff",
                     "type": "Button",
                     "id": "211bed70-8a5c-4ccb-bd86-f1e6e8ff91da",
                     "expectedControlType": "Button",
@@ -237,29 +266,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PutIn",
+                    "action": "PutInCoin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "9d3523b6-713f-41e4-847d-0f321cea4224",
-                    "path": "<Keyboard>/period",
+                    "path": "<Keyboard>/slash",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TakeOut",
+                    "action": "TakeOutStuff",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "4c34ce7f-a9d5-4dae-90fb-6f59f6fcfdf4",
-                    "path": "<Keyboard>/slash",
+                    "path": "<Keyboard>/quote",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28b0789d-3238-4f7d-a4df-1753ae50d45b",
+                    "path": "<Keyboard>/period",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PutInBomb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

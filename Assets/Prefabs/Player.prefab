@@ -132,7 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf92d5783941f248b1b5dc89a0fec5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerIndex: 1
   MoveSpeed: 1
+  detectRange: 0.2
+  CoinAmount: 3
+  bombAmount: 3
 --- !u!114 &1461677802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,5 +212,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.25}
+  m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
