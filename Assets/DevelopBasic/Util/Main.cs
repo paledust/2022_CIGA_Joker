@@ -7,5 +7,6 @@ public class Main : MonoBehaviour
 {
     protected virtual void Awake(){
         GameManager.mainCam = Camera.main;
+        // GameManager.
     }
 }

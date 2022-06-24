@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public static Camera mainCam;
+    public Player player1;
+    public Player player2;
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
     protected override void Awake()
