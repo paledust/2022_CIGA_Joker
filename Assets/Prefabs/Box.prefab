@@ -75,8 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_collider: {fileID: 3515583339119764091}
   ContainCoin: 0
-  ContainBombP1: 0
-  ContainBombP2: 0
+  ContainBomb: 0000
   feedbackAnimation: {fileID: 2067829696}
 --- !u!111 &2067829696
 Animation:
@@ -164,9 +163,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 2023835297
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ee6b64bda101341488583eb5e56b6380, type: 3}
   m_Color: {r: 1, g: 0.9543703, b: 0.67358494, a: 1}
   m_FlipX: 0

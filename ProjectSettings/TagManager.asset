@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackLayer
+    uniqueID: 1297030593
+    locked: 0
+  - name: MidLayer
+    uniqueID: 2023835297
+    locked: 0
