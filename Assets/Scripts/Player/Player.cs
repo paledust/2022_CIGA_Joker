@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float MoveSpeed = 1;
     [SerializeField] private float detectRange = 0.2f;
+    [SerializeField] private int CoinAmount = 3;
     private Vector2 direction;
     private Vector3 facingDirection = Vector3.up;
     private Rigidbody2D m_rigid;
     private Ray2D ray;
+    private RaycastHit2D hit;
     void Awake(){
         m_rigid = GetComponent<Rigidbody2D>();
     }
@@ -24,16 +26,36 @@ public class Player : MonoBehaviour
     }
     void OnPutIn(InputValue value){
         //To Do:检测有无可以放入的对象
+        InteractableObject interactableObj = DetectInteractable(new Ray2D(transform.position, facingDirection));
+        if(interactableObj != null){
+            interactableObj.OnInteract(INTERACTABLE_TYPE.PUT_IN);
+        }
         Debug.Log("Put In Stuff");
     }
     void OnTakeOut(InputValue value){
         //To Do:检测有无可以拿去的对象
+        InteractableObject interactableObj = DetectInteractable(new Ray2D(transform.position, facingDirection));
+        if(interactableObj != null){
+            interactableObj.OnInteract(INTERACTABLE_TYPE.TAKE_OUT);
+        }
         Debug.Log("Take Out Stuff");
     }
     void OnAttack(InputValue value){
         //To Do:检测有无可以攻击的对象
+        InteractableObject interactableObj = DetectInteractable(new Ray2D(transform.position, facingDirection));
+        if(interactableObj != null){
+            interactableObj.OnInteract(INTERACTABLE_TYPE.ATTACK);
+        }
         Debug.Log("Attack");
     }
+    InteractableObject DetectInteractable(Ray2D ray){
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange, Service.InteractableLayer);
+        if(hit && hit.collider.GetComponent<InteractableObject>()){
+            return hit.collider.GetComponent<InteractableObject>();
+        }
+        return null;
+    }
+
     void OnDrawGizmos(){
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(transform.position, facingDirection*detectRange);
