@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float detectRange = 0.2f;
     [SerializeField] private PlayerSprite_SO playerSpriteData;
     [SerializeField] private SpriteRenderer playerRender;
+    private float SpeedMultiplier = 1;
+    private bool Inverse = false;
 [Header("Bomb")]
     [SerializeField] private float bombBlinkTime = 3;
     [SerializeField] private float bombBlinkFreq = 5;
@@ -20,6 +22,9 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMesh m_itemAmountText;
 [Header("Physics")]
     [SerializeField] private CircleCollider2D m_collider;
+[Header("Poisned")]
+    [SerializeField] private float RecoverDelay = 3;
+    [SerializeField] private float PoisonDropCoinRate = 5;
 [Header("Rock Paper Sissor")]
     [SerializeField] private RPS_SO rpsData;
     [SerializeField] private SpriteRenderer rpsRenderer;
@@ -33,14 +38,26 @@ public class Player : MonoBehaviour
     private Rigidbody2D m_rigid;
     private float horizontalInput;
     private float verticalInput;
+    private bool Poisoned = false;
+    private float posionTimer = 0;
+    IEnumerator coroutineRecovered;
 #region UNITY事件
     void Awake(){
         m_collider  = GetComponent<CircleCollider2D>();
         m_rigid     = GetComponent<Rigidbody2D>();
         input       = GetComponent<PlayerInput>();
     }
+    void Update(){
+        if(Poisoned){
+            posionTimer += Time.deltaTime * PoisonDropCoinRate;
+            if(posionTimer >= 1){
+                posionTimer = 0;
+                GetHit();
+            }
+        }
+    }
     void FixedUpdate(){
-        m_rigid.position += direction * moveSpeed * Time.fixedDeltaTime;
+        m_rigid.position += direction * moveSpeed * Time.fixedDeltaTime * SpeedMultiplier * (Inverse?-1:1);
     }
     void OnDrawGizmos(){
         Gizmos.color = Color.blue;
@@ -161,6 +178,30 @@ public class Player : MonoBehaviour
     public void ResumeInput()=>input.enabled = true;
     public void BeInvinsible(){invincible = true;}
     public void NotBeInvincible(){invincible = false;}
+    public void InverseControl(){Inverse = true;}
+    public void UnInverseControl(){Inverse = false;}
+    public void GetPoisoned(){
+        if(invincible) {
+            Debug.Log($"玩家{PlayerIndex+1}当前无敌");
+            return;
+        }
+        GetHit();
+        Poisoned = true;
+        float alpha = playerRender.color.a;
+        Color color = Color.green;
+        color.a = alpha;
+
+        playerRender.color = color;
+        if(coroutineRecovered!=null){
+            StopCoroutine(coroutineRecovered);
+        }
+    }
+    public void Recovered(){
+        if(Poisoned){
+            coroutineRecovered = CoroutineRecover();
+            StartCoroutine(coroutineRecovered);
+        }
+    }
     public void GetHit(){
         if(invincible){
             Debug.Log($"玩家{PlayerIndex+1}当前无敌");
@@ -168,6 +209,14 @@ public class Player : MonoBehaviour
         }
         MinusOneCoin();
         StartCoroutine(coroutineBlink());
+    }
+    public void IncreaseSpeed(float increaseScale){
+        SpeedMultiplier = increaseScale;
+    }
+    IEnumerator CoroutineRecover(){
+        yield return new WaitForSeconds(RecoverDelay);
+        playerRender.color = Color.white;
+        Poisoned = false;
     }
     IEnumerator coroutineBlink(){
         for(float t=0;t<1;t+=Time.deltaTime/bombBlinkTime){

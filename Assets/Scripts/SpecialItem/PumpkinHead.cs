@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class PumpkinHead : SpecialItem
 {
+    [SerializeField] private float SpeedIncreaseScale  = 1.5f;
+    public override void Initialize(Player inputPlayer)
+    {
+        base.Initialize(inputPlayer);
+        currentPlayer.IncreaseSpeed(SpeedIncreaseScale);
+    }
     void OnTriggerEnter2D(Collider2D other){
         Player player = other.GetComponent<Player>();
-        if(player!=null && player!=currentPlayer){
-            
+        if(player!=null && player != currentPlayer){
+            player.GetPoisoned();
+        }
+    }
+    void OnTriggerExit2D(Collider2D other){
+        Player player = other.GetComponent<Player>();
+        if(player!=null && player != currentPlayer){
+            player.Recovered();
         }
     }
 }

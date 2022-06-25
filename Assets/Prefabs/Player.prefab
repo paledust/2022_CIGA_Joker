@@ -244,6 +244,8 @@ MonoBehaviour:
   m_itemAmountAnimation: {fileID: 4949876427615780571}
   m_itemAmountText: {fileID: 7673463329218421721}
   m_collider: {fileID: 5641909353495924007}
+  RecoverDelay: 6
+  PoisonDropCoinRate: 0.5
   rpsData: {fileID: 11400000, guid: 13bda27fc1ea84841831ae3b3570c252, type: 2}
   rpsRenderer: {fileID: 4326296755894737950}
   hitFeedback: {fileID: 6729315074680072040}
