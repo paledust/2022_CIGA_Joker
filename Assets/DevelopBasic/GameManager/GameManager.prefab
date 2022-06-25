@@ -303,5 +303,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b035faf50d0c4547ab64d28c6066350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 8433196100919924145}
-  image: {fileID: 8122758737979988608}
+  gameoverText: {fileID: 8433196100919924145}
+  gameoverImage: {fileID: 8122758737979988608}

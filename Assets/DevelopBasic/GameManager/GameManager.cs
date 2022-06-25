@@ -10,12 +10,12 @@ public class GameManager : Singleton<GameManager>
     public static Camera mainCam;
     public static Player player1;
     public static Player player2;
+    public static BoxManager boxManager;
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
-    private float putCoinsTimer = 0f;
     private float gameTimer = 0f;
-    [SerializeField] private Text text;
-    [SerializeField] private Image image;
+    [SerializeField] private Text gameoverText;
+    [SerializeField] private Image gameoverImage;
     protected override void Awake()
     {
         base.Awake();
@@ -23,13 +23,7 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
     private void FixedUpdate() {
-        putCoinsTimer += Time.fixedDeltaTime;
         gameTimer += Time.fixedDeltaTime;
-        if (putCoinsTimer > 20.0f)
-        {
-            EventHandler.Call_OnPutCoins();
-            putCoinsTimer = 0;
-        }
         if (gameTimer > 180.0f)
         {
             GameOver();
@@ -38,13 +32,13 @@ public class GameManager : Singleton<GameManager>
     }
     public void GameOver()
     {
-        image.color = new Color(1, 1, 1, 1);
-        text.color = new Color(0, 0, 0, 1);
+        gameoverImage.color = new Color(1, 1, 1, 1);
+        gameoverText.color = new Color(0, 0, 0, 1);
         Debug.Log("GameOver!");
         int coin1 = player1.coinAmount;
         int coin2 = player2.coinAmount;
         string winner = coin1 == coin2 ? "平局" : coin1 > coin2 ? "玩家1获胜" : "玩家2获胜";
-        text.text = string.Format("游戏结束！\n({0}:{1})\n{2}！", coin1, coin2, winner);
+        gameoverText.text = $"游戏结束！\n({coin1}:{coin2})\n{winner}！";
         
     }
     public void SwitchingScene(string from, string to){

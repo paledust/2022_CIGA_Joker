@@ -462,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 1562953483}
   player2: {fileID: 1272512662}
+  boxManager: {fileID: 1642885063}
 --- !u!1 &965649115
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3116dd62c784743982207af1731311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  putNum: 3
+  num: 3
 --- !u!1 &1765202642
 GameObject:
   m_ObjectHideFlags: 0
