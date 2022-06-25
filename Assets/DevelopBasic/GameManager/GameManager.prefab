@@ -60,7 +60,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3663910485737632442
 MonoBehaviour:
@@ -381,6 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b035faf50d0c4547ab64d28c6066350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameTimer: 0
   gameoverText: {fileID: 8433196100919924145}
   countdownText: {fileID: 2977482233946497534}
   gameoverImage: {fileID: 8122758737979988608}
