@@ -11,6 +11,10 @@ public static class EventHandler
     public static void Call_OnTestEvent(float data){
         E_OnTestEvent?.Invoke(data);
     }
+    public static event Action E_OnPutCoins;
+    public static void Call_OnPutCoins(){
+        E_OnPutCoins?.Invoke();
+    }
 }
 
 //A More Strict Event System

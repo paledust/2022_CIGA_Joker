@@ -9,6 +9,7 @@ public class BoxManager : MonoBehaviour
     // private List<Box> emptyBoxes;
     private void Start() {
         allBoxes = new List<Box>(GetComponentsInChildren<Box>());
+        EventHandler.E_OnPutCoins += PutCoins;
     }
 
     private void PutCoins() 
@@ -18,7 +19,7 @@ public class BoxManager : MonoBehaviour
             int t = Random.Range(0, i);
             (allBoxes[i], allBoxes[t]) = (allBoxes[t], allBoxes[i]);
         }
-        
+
         for (int i = 0; i < System.Math.Max(putNum, allBoxes.Count); i++)
         {
             allBoxes[i].PutInCoin(1);
