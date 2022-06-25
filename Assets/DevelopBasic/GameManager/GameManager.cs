@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
     public float gameTimer = 0f;
+    public bool gameRunning = false;
+    private bool restartFlag1, restartFlag2;
     [SerializeField] private Text gameoverText;
     [SerializeField] private Text countdownText;
     [SerializeField] private Image gameoverImage;
@@ -24,25 +26,40 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
     private void FixedUpdate() {
+        if (!gameRunning)   return;
         gameTimer += Time.fixedDeltaTime;
         int lastTime = ((int)(180 - gameTimer));
         countdownText.text = $"{lastTime / 60:D2} : {lastTime % 60:D2}";
-        if (gameTimer > 180.0f)
+        if (gameTimer > 5.0f)
         {
             GameOver();
+            gameRunning = false;
             gameTimer = 0;
         }
     }
     public void GameOver()
     {
-        gameoverImage.color = new Color(1, 1, 1, 1);
-        gameoverText.color = new Color(0, 0, 0, 1);
+        gameoverImage.gameObject.SetActive(true);
         Debug.Log("GameOver!");
         int coin1 = player1.coinAmount;
         int coin2 = player2.coinAmount;
         string winner = coin1 == coin2 ? "平局" : coin1 > coin2 ? "玩家1获胜" : "玩家2获胜";
         gameoverText.text = $"游戏结束！\n({coin1}:{coin2})\n{winner}！";
-        
+        player1.PauseInput();
+        player2.PauseInput();
+    }
+
+    public void Restart()
+    {
+        gameoverImage.gameObject.SetActive(false);
+        gameTimer = 0;
+        gameRunning = true;
+        SwitchingScene("Level-0", "Level-0");
+    }    
+    public void Exit()
+    {
+        gameoverImage.gameObject.SetActive(false);
+        SwitchingScene("Level-0", "Start"); 
     }
     public void SwitchingScene(string from, string to){
         if(!isSwitchingScene){
