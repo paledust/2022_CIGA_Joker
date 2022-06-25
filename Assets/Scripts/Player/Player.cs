@@ -53,12 +53,16 @@ public class Player : MonoBehaviour
             direction.x = horizontalInput;
             playerRender.sprite = playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
             playerRender.flipX  = direction.x<0;
+
+            facingDirection = direction;
         }
         else{
             direction.x = 0;
             if(verticalInput!=0){
                 direction.y = verticalInput;
                 playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?FACING_DIRECTION.UP:FACING_DIRECTION.DOWN);
+
+                facingDirection = direction;
             }
         }
     }
@@ -68,6 +72,8 @@ public class Player : MonoBehaviour
             direction = Vector2.zero;
             direction.y = verticalInput;   
             playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?FACING_DIRECTION.UP:FACING_DIRECTION.DOWN);
+
+            facingDirection = direction;
         }
         else{
             direction.y = 0;
@@ -75,6 +81,8 @@ public class Player : MonoBehaviour
                 direction.x = horizontalInput;
                 playerRender.sprite = playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
                 playerRender.flipX  = direction.x<0;
+
+                facingDirection = direction;
             }
         }
     }
