@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1461677802, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 49eb3161-0a10-447e-a20f-3836d1de31a0
+      objectReference: {fileID: 0}
     - target: {fileID: 3854950122659718644, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -21,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3854950123324330672, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_Name
-      value: Player2
+      value: Player2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3854950123324330687, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_RootOrder

@@ -12,8 +12,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1461677802, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: c7ab19aca750e2f4c8a89e36bf818766, type: 3}
+    - target: {fileID: 1461677802, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_DefaultActionMap
-      value: Player1
+      value: 4c8ec349-fbcd-4a27-a7a4-36c91ef29e9c
       objectReference: {fileID: 0}
     - target: {fileID: 3854950123324330672, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_Name
