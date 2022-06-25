@@ -27,7 +27,8 @@ public class BoxManager : MonoBehaviour
             (allBoxes[i], allBoxes[t]) = (allBoxes[t], allBoxes[i]);
         }
 
-        for (int i = 0; i < System.Math.Max(putNum, allBoxes.Count); i++)
+        Debug.Log($"有{Mathf.Min(putNum, allBoxes.Count)}个盒子新放入了一枚糖果！！！！快来拿啊！！！");
+        for (int i = 0; i < System.Math.Min(putNum, allBoxes.Count); i++)
         {
             allBoxes[i].PutInCoin(1);
         }

@@ -167,18 +167,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Paper",
+                    "name": "Sissor",
                     "type": "Button",
-                    "id": "5bdafb34-10a1-489e-b030-531858316028",
+                    "id": "348615c5-3307-4e7d-a065-63ab36688081",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sissor",
+                    "name": "Paper",
                     "type": "Button",
-                    "id": "348615c5-3307-4e7d-a065-63ab36688081",
+                    "id": "5bdafb34-10a1-489e-b030-531858316028",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -200,7 +200,7 @@
                 {
                     "name": "",
                     "id": "b877bb8d-3ad9-4258-a16d-8b98720ed401",
-                    "path": "<Keyboard>/period",
+                    "path": "<Keyboard>/slash",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -211,7 +211,7 @@
                 {
                     "name": "",
                     "id": "f4dc7d23-fbe7-4d71-83b4-92f53045ce34",
-                    "path": "<Keyboard>/slash",
+                    "path": "<Keyboard>/period",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

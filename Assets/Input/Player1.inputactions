@@ -55,7 +55,7 @@
                 {
                     "name": "WASD",
                     "id": "00ca640b-d935-4593-8157-c05846ea39b3",
-                    "path": "Dpad",
+                    "path": "Dpad(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -167,18 +167,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Paper",
+                    "name": "Sissor",
                     "type": "Button",
-                    "id": "dfdc301e-828f-4060-8a71-91fd68dca82c",
+                    "id": "f2c9ae6b-2866-4079-b9c4-01bab23e1d9a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sissor",
+                    "name": "Paper",
                     "type": "Button",
-                    "id": "f2c9ae6b-2866-4079-b9c4-01bab23e1d9a",
+                    "id": "dfdc301e-828f-4060-8a71-91fd68dca82c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -200,7 +200,7 @@
                 {
                     "name": "",
                     "id": "49705099-e363-4c04-ac44-143945e9387e",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -211,7 +211,7 @@
                 {
                     "name": "",
                     "id": "74e5629b-e2eb-4b67-a773-cc01af919ed0",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
