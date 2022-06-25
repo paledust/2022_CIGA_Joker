@@ -9,6 +9,15 @@ public class TransferDamage : SpecialItem
     {
         base.Initialize(inputPlayer);
         opponent = (inputPlayer == GameManager.player1?GameManager.player2:GameManager.player1);
-        opponent.InverseControl();
+        currentPlayer.CanTransferDamage = true;
+
+        EventHandler.E_OnTransferDamage += TrySendDamage;
+    }
+    void OnDestroy(){
+        EventHandler.E_OnTransferDamage -= TrySendDamage;
+    }
+    void TrySendDamage(int damage, Player callPlayer){
+        if(callPlayer != currentPlayer) return;
+        opponent.LoseCoins(damage);
     }
 }

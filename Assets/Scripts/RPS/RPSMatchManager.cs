@@ -56,7 +56,7 @@ public class RPSMatchManager : MonoBehaviour
             // m_text.text = "玩家2获胜";
             if(!GameManager.player1.invincible && GameManager.player1.CoinAmount!=0){
                 GameManager.player2.GetCoins(GameManager.player1.CoinAmount);
-                GameManager.player1.LooseAllCoins();
+                GameManager.player1.LoseRPSTest();
             }
 
             win_result_Animator.SetTrigger(win_result_Trigger_String);
@@ -70,7 +70,7 @@ public class RPSMatchManager : MonoBehaviour
             // m_text.text = "玩家1获胜";
             if(!GameManager.player2.invincible && GameManager.player2.CoinAmount!=0){
                 GameManager.player1.GetCoins(GameManager.player2.CoinAmount);
-                GameManager.player2.LooseAllCoins();
+                GameManager.player2.LoseRPSTest();
             }
 
             win_result_Animator.SetTrigger(win_result_Trigger_String);

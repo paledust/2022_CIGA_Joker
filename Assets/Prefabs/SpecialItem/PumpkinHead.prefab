@@ -4980,6 +4980,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 1
-  LifeTime: 10
+  LifeTime: 15
   currentPlayer: {fileID: 0}
-  SpeedDescreaseAmount: 0.7
+  SpeedIncreaseScale: 1.5

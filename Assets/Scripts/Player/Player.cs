@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 [Header("Poisned")]
     [SerializeField] private float RecoverDelay = 3;
     [SerializeField] private float PoisonDropCoinRate = 5;
+[Header("Damage Transfer")]
+    public bool CanTransferDamage = false;
 [Header("Rock Paper Sissor")]
     [SerializeField] private RPS_SO rpsData;
     [SerializeField] private SpriteRenderer rpsRenderer;
@@ -52,7 +54,7 @@ public class Player : MonoBehaviour
             posionTimer += Time.deltaTime * PoisonDropCoinRate;
             if(posionTimer >= 1){
                 posionTimer = 0;
-                GetHit();
+                DamageTest();
             }
         }
     }
@@ -185,7 +187,7 @@ public class Player : MonoBehaviour
             Debug.Log($"玩家{PlayerIndex+1}当前无敌");
             return;
         }
-        GetHit();
+        DamageTest();
         Poisoned = true;
         float alpha = playerRender.color.a;
         Color color = Color.green;
@@ -202,13 +204,44 @@ public class Player : MonoBehaviour
             StartCoroutine(coroutineRecovered);
         }
     }
-    public void GetHit(){
+    public void DamageTest(){
+        if(CanTransferDamage){
+            Debug.Log($"玩家{PlayerIndex+1}转移伤害给了另一名玩家");
+            EventHandler.Call_OnTransferDamage(1, this);
+            return;
+        }
+        LoseCoin();
+    }
+    public void LoseRPSTest(){
+        if(CanTransferDamage){
+            Debug.Log($"玩家{PlayerIndex+1}转移伤害给了另一名玩家");
+            EventHandler.Call_OnTransferDamage(coinAmount, this);
+            return;  
+        }
+        LooseAllCoins();
+    }
+    public void LoseCoin(){
         if(invincible){
             Debug.Log($"玩家{PlayerIndex+1}当前无敌");
             return;
         }
         MinusOneCoin();
         StartCoroutine(coroutineBlink());
+    }
+    public void LoseCoins(int damage){
+        if(invincible){
+            Debug.Log($"玩家{PlayerIndex+1}当前无敌");
+            return;
+        }
+        coinAmount -= damage;
+        coinAmount = Mathf.Max(0, coinAmount);
+        StartCoroutine(coroutineBlink());
+    }
+    public void LooseAllCoins(){
+        LoseCoins(coinAmount);
+    }
+    public void MinusOneCoin(){
+        if(coinAmount > 0) coinAmount --;
     }
     public void IncreaseSpeed(float increaseScale){
         SpeedMultiplier = increaseScale;
@@ -225,12 +258,7 @@ public class Player : MonoBehaviour
         }
         playerRender.enabled = true;
     }
-    public void MinusOneCoin(){
-        if(coinAmount > 0) coinAmount --;
-    }
-    public void LooseAllCoins(){
-        coinAmount = 0;
-    }
+
     public void GetCoins(int amount){
         coinAmount += amount;
         m_itemAmountText.text = $"+{amount}";

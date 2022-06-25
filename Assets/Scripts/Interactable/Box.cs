@@ -72,7 +72,7 @@ public class Box : InteractableObject
     void BombTest(Player currentPlayer){
         vfxAnimator.SetTrigger(vfxTrigger);
         bombAnimator.SetTrigger("Bomb");
-        currentPlayer.GetHit();
+        currentPlayer.DamageTest();
         ContainBomb = false;
 
         //To Do: 添加player被炸的feedback

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 2
-  LifeTime: 5
+  LifeTime: 15
   currentPlayer: {fileID: 0}
 --- !u!1 &6881190987477066554
 GameObject:
