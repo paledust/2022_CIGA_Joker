@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float detectRange = 0.2f;
     [SerializeField] private PlayerSprite_SO playerSpriteData;
     [SerializeField] private SpriteRenderer playerRender;
+[Header("Bomb")]
+    [SerializeField] private float bombBlinkTime = 3;
+    [SerializeField] private float bombBlinkFreq = 5;
 [Header("Item")]
     public int coinAmount = 3;
     public int bombAmount = 3;
@@ -20,13 +23,12 @@ public class Player : MonoBehaviour
 [Header("Rock Paper Sissor")]
     [SerializeField] private RPS_SO rpsData;
     [SerializeField] private SpriteRenderer rpsRenderer;
+    [SerializeField] private Animation hitFeedback;
     public RPS_CHOISE rpsChoise = RPS_CHOISE.ROCK;
     private PlayerInput input; 
     private Vector2 direction;
     private Vector3 facingDirection = Vector3.up;
     private Rigidbody2D m_rigid;
-    private Ray2D ray;
-    private RaycastHit2D hit;
     private float horizontalInput;
     private float verticalInput;
 #region UNITY事件
@@ -119,18 +121,21 @@ public class Player : MonoBehaviour
     }
     void OnRock(){
         rpsChoise = RPS_CHOISE.ROCK;
-        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+        hitFeedback.Play();
     }
     void OnPaper(){
         rpsChoise = RPS_CHOISE.PAPER;
-        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+        hitFeedback.Play();
     }
     void OnSissor(){
         rpsChoise = RPS_CHOISE.SISSOR;
-        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+        hitFeedback.Play();
     }
 #endregion
-
+    public void ShowRPSResult(){
+        rpsRenderer.GetComponent<Animator>().enabled = false;
+        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+    }
 // 进入猜拳模式(Rock, Paper, Sissor)
     public void EnterRPSMode(){
         //停止角色的移动
@@ -138,7 +143,8 @@ public class Player : MonoBehaviour
 
         rpsChoise = RPS_CHOISE.ROCK;
         rpsRenderer.gameObject.SetActive(true);
-        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+        rpsRenderer.GetComponent<Animator>().enabled = true;
+        rpsRenderer.GetComponent<Animator>().Play("RPS", 0, Random.Range(0f,1f));
         input.SwitchCurrentActionMap("RPS");
     }
 // 退出猜拳模式(Rock, Paper, Sissor)
@@ -149,7 +155,14 @@ public class Player : MonoBehaviour
     public void PauseInput()=>input.enabled = false;
     public void ResumeInput()=>input.enabled = true;
     public void GetBombed(){
-
+        StartCoroutine(coroutineBlinK());
+    }
+    IEnumerator coroutineBlinK(){
+        for(float t=0;t<1;t+=Time.deltaTime/bombBlinkTime){
+            playerRender.enabled = Mathf.Sin(t*bombBlinkFreq*2*Mathf.PI*bombBlinkTime)>0;
+            yield return null;
+        }
+        playerRender.enabled = true;
     }
     public void MinusOneCoin(){if(coinAmount > 0) coinAmount --;}
     public void GetCoins(int amount){

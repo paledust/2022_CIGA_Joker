@@ -28,6 +28,9 @@ public class RPSMatchManager : MonoBehaviour
         GameManager.player1.PauseInput();
         GameManager.player2.PauseInput();
 
+        GameManager.player1.ShowRPSResult();
+        GameManager.player2.ShowRPSResult();
+
         RPS_CHOISE player1Choise = GameManager.player1.rpsChoise;
         RPS_CHOISE player2Choise = GameManager.player2.rpsChoise;
         
@@ -47,7 +50,7 @@ public class RPSMatchManager : MonoBehaviour
             GameManager.player2.coinAmount = 0;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
     //结束玩家的RPS MODE
         m_text.text = string.Empty;
 
