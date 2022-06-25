@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteData:
   - sprite: {fileID: -2029152396, guid: 63e39c67c9c7dd443b494398a548b20c, type: 3}
-    direction: 0
+    state: 0
   - sprite: {fileID: 1555560003, guid: 63e39c67c9c7dd443b494398a548b20c, type: 3}
-    direction: 1
+    state: 1
   - sprite: {fileID: 1300812789, guid: 63e39c67c9c7dd443b494398a548b20c, type: 3}
-    direction: 2
+    state: 2
   - sprite: {fileID: 1300812789, guid: 63e39c67c9c7dd443b494398a548b20c, type: 3}
-    direction: 3
+    state: 3
+  - sprite: {fileID: 860498784, guid: 63e39c67c9c7dd443b494398a548b20c, type: 3}
+    state: 4
