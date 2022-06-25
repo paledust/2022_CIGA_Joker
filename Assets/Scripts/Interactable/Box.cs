@@ -26,7 +26,7 @@ public class Box : InteractableObject
                 if(ContainBomb){
                     BombTest(currentPlayer);
                 }
-                else if(currentPlayer.coinAmount>0){
+                else if(currentPlayer.CoinAmount>0){
                     currentPlayer.MinusOneCoin();
                     ContainCoin ++;
                     StartCoroutine(CoroutinePlayingFeedback());
@@ -72,8 +72,7 @@ public class Box : InteractableObject
     void BombTest(Player currentPlayer){
         vfxAnimator.SetTrigger(vfxTrigger);
         bombAnimator.SetTrigger("Bomb");
-        currentPlayer.GetBombed();
-        currentPlayer.MinusOneCoin();
+        currentPlayer.GetHit();
         ContainBomb = false;
 
         //To Do: 添加player被炸的feedback

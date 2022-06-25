@@ -54,21 +54,31 @@ public class RPSMatchManager : MonoBehaviour
         }
         else if(player2Choise == counterChoise(player1Choise)){
             // m_text.text = "玩家2获胜";
-            if(GameManager.player1.coinAmount!=0) GameManager.player2.GetCoins(GameManager.player1.coinAmount);
-            GameManager.player1.coinAmount = 0;
+            if(!GameManager.player1.invincible && GameManager.player1.CoinAmount!=0){
+                GameManager.player2.GetCoins(GameManager.player1.CoinAmount);
+                GameManager.player1.LooseAllCoins();
+            }
+
             win_result_Animator.SetTrigger(win_result_Trigger_String);
             win_sprite.sprite = GameManager.player2.GetStateSprite(PLAYER_SPRITE_STATE.RIGHT);
             lose_sprite.sprite = GameManager.player1.GetStateSprite(PLAYER_SPRITE_STATE.SAD);
-            yield return new WaitForSeconds(2.8f);
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(coroutineBlinkLoser());
+            yield return new WaitForSeconds(0.8f);
         }
         else{
             // m_text.text = "玩家1获胜";
-            if(GameManager.player2.coinAmount!=0) GameManager.player1.GetCoins(GameManager.player2.coinAmount);
-            GameManager.player2.coinAmount = 0;
+            if(!GameManager.player2.invincible && GameManager.player2.CoinAmount!=0){
+                GameManager.player1.GetCoins(GameManager.player2.CoinAmount);
+                GameManager.player2.LooseAllCoins();
+            }
+
             win_result_Animator.SetTrigger(win_result_Trigger_String);
             win_sprite.sprite = GameManager.player1.GetStateSprite(PLAYER_SPRITE_STATE.RIGHT);
             lose_sprite.sprite = GameManager.player2.GetStateSprite(PLAYER_SPRITE_STATE.SAD);
-            yield return new WaitForSeconds(2.8f);
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(coroutineBlinkLoser());
+            yield return new WaitForSeconds(0.8f);
         }
 
         yield return new WaitForSeconds(1.5f);
@@ -95,5 +105,12 @@ public class RPSMatchManager : MonoBehaviour
             default:
                 return RPS_CHOISE.SISSOR;
         }
+    }
+    IEnumerator coroutineBlinkLoser(){
+        for(float t=0;t<1;t+=Time.deltaTime/1.5f){
+            lose_sprite.enabled = Mathf.Sin(t*5*2*Mathf.PI*1.5f)>0;
+            yield return null;
+        }
+        lose_sprite.enabled = true;
     }
 }

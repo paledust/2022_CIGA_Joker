@@ -22,8 +22,8 @@ public class BroadcastManager : MonoBehaviour
             if (nextBroadcastType)
             {
                 newBroadcast = $"[{time / 60:D2} : {time % 60 :D2}]\n"
-                             + $"玩家1金币/炸弹数量：{GameManager.player1.coinAmount}/{GameManager.player1.bombAmount}\n"
-                             + $"玩家2金币/炸弹数量：{GameManager.player2.coinAmount}/{GameManager.player2.bombAmount}\n";
+                             + $"玩家1金币/炸弹数量：{GameManager.player1.CoinAmount}/{GameManager.player1.bombAmount}\n"
+                             + $"玩家2金币/炸弹数量：{GameManager.player2.CoinAmount}/{GameManager.player2.bombAmount}\n";
             }
             else 
             {

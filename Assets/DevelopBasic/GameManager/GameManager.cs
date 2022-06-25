@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         gameTimer += Time.fixedDeltaTime;
         int lastTime = ((int)(180 - gameTimer));
         countdownText.text = $"{lastTime / 60:D2} : {lastTime % 60:D2}";
-        if (gameTimer > 5.0f)
+        if (gameTimer > 180f)
         {
             GameOver();
             gameRunning = false;
@@ -41,8 +41,8 @@ public class GameManager : Singleton<GameManager>
     {
         gameoverImage.gameObject.SetActive(true);
         Debug.Log("GameOver!");
-        int coin1 = player1.coinAmount;
-        int coin2 = player2.coinAmount;
+        int coin1 = player1.CoinAmount;
+        int coin2 = player2.CoinAmount;
         string winner = coin1 == coin2 ? "平局" : coin1 > coin2 ? "玩家1获胜" : "玩家2获胜";
         gameoverText.text = $"游戏结束！\n({coin1}:{coin2})\n{winner}！";
         player1.PauseInput();

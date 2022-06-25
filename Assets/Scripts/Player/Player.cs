@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float bombBlinkTime = 3;
     [SerializeField] private float bombBlinkFreq = 5;
 [Header("Item")]
-    public int coinAmount = 3;
+    [SerializeField] private int coinAmount = 3;
     public int bombAmount = 3;
     [SerializeField] private Animation m_itemAmountAnimation;
     [SerializeField] private TextMesh m_itemAmountText;
@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer rpsRenderer;
     [SerializeField] private Animation hitFeedback;
     public RPS_CHOISE rpsChoise = RPS_CHOISE.ROCK;
+    public int CoinAmount{get{return coinAmount;}}
+    public bool invincible{get; private set;} = false;
     private PlayerInput input; 
     private Vector2 direction;
     private Vector3 facingDirection = Vector3.up;
@@ -157,17 +159,29 @@ public class Player : MonoBehaviour
     }
     public void PauseInput()=>input.enabled = false;
     public void ResumeInput()=>input.enabled = true;
-    public void GetBombed(){
-        StartCoroutine(coroutineBlinK());
+    public void BeInvinsible(){invincible = true;}
+    public void NotBeInvincible(){invincible = false;}
+    public void GetHit(){
+        if(invincible){
+            Debug.Log($"玩家{PlayerIndex+1}当前无敌");
+            return;
+        }
+        MinusOneCoin();
+        StartCoroutine(coroutineBlink());
     }
-    IEnumerator coroutineBlinK(){
+    IEnumerator coroutineBlink(){
         for(float t=0;t<1;t+=Time.deltaTime/bombBlinkTime){
             playerRender.enabled = Mathf.Sin(t*bombBlinkFreq*2*Mathf.PI*bombBlinkTime)>0;
             yield return null;
         }
         playerRender.enabled = true;
     }
-    public void MinusOneCoin(){if(coinAmount > 0) coinAmount --;}
+    public void MinusOneCoin(){
+        if(coinAmount > 0) coinAmount --;
+    }
+    public void LooseAllCoins(){
+        coinAmount = 0;
+    }
     public void GetCoins(int amount){
         coinAmount += amount;
         m_itemAmountText.text = $"+{amount}";
