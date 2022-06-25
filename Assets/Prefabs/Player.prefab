@@ -170,7 +170,7 @@ SpriteRenderer:
   m_SortingLayerID: 2023835297
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dab2ef0f3c63cea498d638ddb80b37ec, type: 3}
+  m_Sprite: {fileID: 1555560003, guid: 63e39c67c9c7dd443b494398a548b20c, type: 3}
   m_Color: {r: 1, g: 0, b: 0.07890272, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -234,6 +234,8 @@ MonoBehaviour:
   PlayerIndex: 1
   moveSpeed: 1
   detectRange: 0.2
+  playerSpriteData: {fileID: 0}
+  playerRender: {fileID: 3854950122659718644}
   coinAmount: 3
   bombAmount: 3
   m_itemAmountAnimation: {fileID: 4949876427615780571}
