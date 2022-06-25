@@ -11,7 +11,8 @@ public class GameManager : Singleton<GameManager>
     public static Player player2;
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
-    private float timer = 0f;
+    private float putCoinsTimer = 0f;
+    private float gameTimer = 0f;
     protected override void Awake()
     {
         base.Awake();
@@ -19,11 +20,17 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
     private void FixedUpdate() {
-        timer += Time.fixedDeltaTime;
-        if (timer > 20.0f)
+        putCoinsTimer += Time.fixedDeltaTime;
+        gameTimer += Time.fixedDeltaTime;
+        if (putCoinsTimer > 20.0f)
         {
             EventHandler.Call_OnPutCoins();
-            timer = 0;
+            putCoinsTimer = 0;
+        }
+        if (gameTimer > 180.0f)
+        {
+            Debug.Log("GameOver!");
+            gameTimer = 0;
         }
     }
     
