@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
     public float gameTimer = 0f;
-    public bool gameRunning = true;
+    public bool gameRunning = false;
     private bool restartFlag1, restartFlag2;
     [SerializeField] private Text gameoverText;
     [SerializeField] private Text countdownText;
@@ -53,13 +53,13 @@ public class GameManager : Singleton<GameManager>
     {
         gameoverImage.gameObject.SetActive(false);
         gameTimer = 0;
-        SwitchingScene("Level-0", "Level-0");
         gameRunning = true;
+        SwitchingScene("Level-0", "Level-0");
     }    
     public void Exit()
     {
-        // TODO : Exit
-        // SwitchingScene("Level-0", "Start");  // StartScene
+        gameoverImage.gameObject.SetActive(false);
+        SwitchingScene("Level-0", "Start"); 
     }
     public void SwitchingScene(string from, string to){
         if(!isSwitchingScene){
