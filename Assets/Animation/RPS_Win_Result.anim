@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RPS_Result
+  m_Name: RPS_Win_Result
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0

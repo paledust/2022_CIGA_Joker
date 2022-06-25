@@ -229,6 +229,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Player1_Sad
+      rect:
+        serializedVersion: 2
+        x: 2388
+        y: 834
+        width: 796
+        height: 833
+      alignment: 9
+      pivot: {x: 0.48468202, y: 0.27751094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 180adab835333e9448f4ab36a3273249
+      internalID: 860498784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player2_Sad
+      rect:
+        serializedVersion: 2
+        x: 2388
+        y: 0
+        width: 796
+        height: 834
+      alignment: 9
+      pivot: {x: 0.47242776, y: 0.16374265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4ca0b06e85c56419815883b44a72d9
+      internalID: -129133665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -241,10 +283,12 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Player1_Down: 1555560003
+      Player2_Sad: -129133665
       Player1_Up: -2029152396
       Player1_Horizontal: 1300812789
       Player2_Horizontal: -989582588
       Player2_Up: -317652926
+      Player1_Sad: 860498784
       Player2_Down: -733413611
   spritePackingTag: 
   pSDRemoveMatte: 0

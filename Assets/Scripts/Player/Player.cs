@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         if(horizontalInput != 0){
             direction = Vector2.zero;
             direction.x = horizontalInput;
-            playerRender.sprite = playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
+            playerRender.sprite = playerSpriteData.getFacingSprite(PLAYER_SPRITE_STATE.RIGHT);
             playerRender.flipX  = direction.x<0;
 
             facingDirection = direction;
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
             direction.x = 0;
             if(verticalInput!=0){
                 direction.y = verticalInput;
-                playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?FACING_DIRECTION.UP:FACING_DIRECTION.DOWN);
+                playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?PLAYER_SPRITE_STATE.UP:PLAYER_SPRITE_STATE.DOWN);
 
                 facingDirection = direction;
             }
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         if(verticalInput != 0){
             direction = Vector2.zero;
             direction.y = verticalInput;   
-            playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?FACING_DIRECTION.UP:FACING_DIRECTION.DOWN);
+            playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?PLAYER_SPRITE_STATE.UP:PLAYER_SPRITE_STATE.DOWN);
 
             facingDirection = direction;
         }
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
             direction.y = 0;
             if(horizontalInput!=0){
                 direction.x = horizontalInput;
-                playerRender.sprite = playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
+                playerRender.sprite = playerSpriteData.getFacingSprite(PLAYER_SPRITE_STATE.RIGHT);
                 playerRender.flipX  = direction.x<0;
 
                 facingDirection = direction;
@@ -136,11 +136,8 @@ public class Player : MonoBehaviour
         rpsRenderer.GetComponent<Animator>().enabled = false;
         rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
     }
-    public Sprite GetWinningSprite(){
-        return playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
-    }
-    public Sprite GetLosingSprite(){
-        return playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
+    public Sprite GetStateSprite(PLAYER_SPRITE_STATE spriteState){
+        return playerSpriteData.getFacingSprite(spriteState);
     }
 // 进入猜拳模式(Rock, Paper, Sissor)
     public void EnterRPSMode(){

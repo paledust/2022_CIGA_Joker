@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerSprite_SO : ScriptableObject
 {
     [SerializeField] private List<PlayerSpriteData> spriteData;
-    public Sprite getFacingSprite(FACING_DIRECTION direction){
-        return spriteData.Find(x=>x.direction == direction).sprite;
+    public Sprite getFacingSprite(PLAYER_SPRITE_STATE state){
+        return spriteData.Find(x=>x.state == state).sprite;
     }
 }
 [System.Serializable]
 public class PlayerSpriteData{
     public Sprite sprite;
-    public FACING_DIRECTION direction;
+    public PLAYER_SPRITE_STATE state;
 }
