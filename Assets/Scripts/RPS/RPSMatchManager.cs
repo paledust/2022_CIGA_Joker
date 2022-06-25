@@ -17,7 +17,7 @@ public class RPSMatchManager : MonoBehaviour
     IEnumerator coroutineRPSMatch(){
         int count = 0;
         for(int i=0; i<4; i++){
-            m_text.text = count.ToString();
+            m_text.text = (3-count).ToString();
             yield return new WaitForSeconds(1f);
             count ++;
         }
