@@ -62,4 +62,13 @@ public class Enemy : MonoBehaviour
     {
         return transform.position.y > posRightDown.y;
     }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Player")
+        {
+            // 给玩家添加减益效果
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        
+    }
 }
