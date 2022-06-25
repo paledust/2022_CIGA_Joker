@@ -234,6 +234,8 @@ MonoBehaviour:
   PlayerIndex: 1
   moveSpeed: 1
   detectRange: 0.2
+  playerSpriteData: {fileID: 0}
+  playerRender: {fileID: 3854950122659718644}
   coinAmount: 3
   bombAmount: 3
   m_itemAmountAnimation: {fileID: 4949876427615780571}

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float detectRange = 0.2f;
     [SerializeField] private PlayerSprite_SO playerSpriteData;
+    [SerializeField] private SpriteRenderer playerRender;
 [Header("Item")]
     public int coinAmount = 3;
     public int bombAmount = 3;
@@ -26,6 +27,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D m_rigid;
     private Ray2D ray;
     private RaycastHit2D hit;
+    private float horizontalInput;
+    private float verticalInput;
 #region UNITY事件
     void Awake(){
         m_collider  = GetComponent<CircleCollider2D>();
@@ -42,9 +45,38 @@ public class Player : MonoBehaviour
 #endregion
 
 #region 玩家操作
-    void OnMove(InputValue value){
-        direction = value.Get<Vector2>();
-        if(direction != Vector2.zero) facingDirection = direction;
+    void OnHorizontal(InputValue value){
+        //侦测到有按键输入
+        horizontalInput = value.Get<float>();
+        if(horizontalInput != 0){
+            direction = Vector2.zero;
+            direction.x = horizontalInput;
+            playerRender.sprite = playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
+            playerRender.flipX  = direction.x<0;
+        }
+        else{
+            direction.x = 0;
+            if(verticalInput!=0){
+                direction.y = verticalInput;
+                playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?FACING_DIRECTION.UP:FACING_DIRECTION.DOWN);
+            }
+        }
+    }
+    void OnVertical(InputValue value){
+        verticalInput = value.Get<float>();
+        if(verticalInput != 0){
+            direction = Vector2.zero;
+            direction.y = verticalInput;   
+            playerRender.sprite = playerSpriteData.getFacingSprite(direction.y>0?FACING_DIRECTION.UP:FACING_DIRECTION.DOWN);
+        }
+        else{
+            direction.y = 0;
+            if(horizontalInput!=0){
+                direction.x = horizontalInput;
+                playerRender.sprite = playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
+                playerRender.flipX  = direction.x<0;
+            }
+        }
     }
     void OnPutInCoin(){
         //To Do:检测有无可以放入的对象
