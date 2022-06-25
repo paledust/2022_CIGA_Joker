@@ -11,12 +11,22 @@ public class GameManager : Singleton<GameManager>
     public static Player player2;
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
+    private float timer = 0f;
     protected override void Awake()
     {
         base.Awake();
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
     }
+    private void FixedUpdate() {
+        timer += Time.fixedDeltaTime;
+        if (timer > 20.0f)
+        {
+            EventHandler.Call_OnPutCoins();
+            timer = 0;
+        }
+    }
+    
     public void SwitchingScene(string from, string to){
         if(!isSwitchingScene){
             StartCoroutine(SwitchSceneCoroutine(from, to));
