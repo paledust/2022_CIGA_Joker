@@ -7,6 +7,7 @@ public class Box : InteractableObject
     [SerializeField] private int ContainCoin;
     [SerializeField] private bool ContainBomb;
     [SerializeField] private Animation feedbackAnimation;
+    [SerializeField] private Animator feedbackAnimator;
     [SerializeField] private Animator vfxAnimator;
     public bool IsEmpty{get{return ContainCoin==0 && !ContainBomb;}}
     private string vfxTrigger = "Play";
@@ -62,6 +63,7 @@ public class Box : InteractableObject
     IEnumerator CoroutinePlayingFeedback(){
         PlayingFeedback = true;
         feedbackAnimation.Play();
+        feedbackAnimator.Play("Box_Open", 0, 0);
         yield return new WaitForSeconds(feedbackAnimation.clip.length);
         PlayingFeedback = false;
     }
