@@ -5,8 +5,9 @@ using UnityEngine;
 public class Box : InteractableObject
 {
     [SerializeField] private int ContainCoin;
-    [SerializeField] private bool[] ContainBomb = new bool[2];
+    [SerializeField] private bool ContainBomb;
     [SerializeField] private Animation feedbackAnimation;
+    public bool IsEmpty{get{return ContainCoin==0 && !ContainBomb;}}
     private bool PlayingFeedback = false;
     public override void OnInteract(INTERACTABLE_TYPE interactableType, Player currentPlayer)
     {
@@ -17,35 +18,36 @@ public class Box : InteractableObject
 
         switch(interactableType){
             case INTERACTABLE_TYPE.PUT_IN_COIN:
-                if(currentPlayer.coinAmount>0){
+                if(ContainBomb){
+                    BombTest(currentPlayer);
+                }
+                else if(currentPlayer.coinAmount>0){
                     currentPlayer.coinAmount --;
                     ContainCoin ++;
                     StartCoroutine(CoroutinePlayingFeedback());
+                    
                     Debug.Log("有玩家放入金币");
                 }
                 break;
             case INTERACTABLE_TYPE.PUT_IN_BOMB:
-                if(currentPlayer.bombAmount>0){
-                    if(!ContainBomb[playerIndex]){
-                        ContainBomb[playerIndex] = true;
-                        currentPlayer.bombAmount --;
-                        StartCoroutine(CoroutinePlayingFeedback());
-                    }
+                if(ContainBomb){
+                    BombTest(currentPlayer);
+                }
+                else if(currentPlayer.bombAmount>0){
+                    ContainBomb = true;
+                    currentPlayer.bombAmount --;
+                    StartCoroutine(CoroutinePlayingFeedback());
 
                     Debug.Log($"玩家{playerIndex+1}放入一枚炸弹");
                 }
                 break;
             case INTERACTABLE_TYPE.TAKE_OUT_STUFF:
-                if(ContainBomb[1-playerIndex]){
-                    currentPlayer.coinAmount = currentPlayer.coinAmount/2;
-                    ContainBomb[1-playerIndex] = false;
-
-                    //To Do: 添加player被炸的feedback
-                    Debug.Log($"玩家{playerIndex+1}被炸弹炸了");
+                if(ContainBomb){
+                    BombTest(currentPlayer);
                 }
                 else if(ContainCoin>0){
                     currentPlayer.coinAmount += ContainCoin;
-                    ContainCoin --;
+                    ContainCoin -= ContainCoin;
                     Debug.Log("有玩家拿起金币");
                 }
 
@@ -59,5 +61,12 @@ public class Box : InteractableObject
         feedbackAnimation.Play();
         yield return new WaitForSeconds(feedbackAnimation.clip.length);
         PlayingFeedback = false;
+    }
+    void BombTest(Player currentPlayer){
+        currentPlayer.coinAmount --;
+        ContainBomb = false;
+
+        //To Do: 添加player被炸的feedback
+        Debug.Log($"玩家{currentPlayer.PlayerIndex+1}被炸弹炸了");
     }
 }
