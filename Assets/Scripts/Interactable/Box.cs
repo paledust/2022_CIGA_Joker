@@ -22,7 +22,7 @@ public class Box : InteractableObject
                     BombTest(currentPlayer);
                 }
                 else if(currentPlayer.coinAmount>0){
-                    currentPlayer.coinAmount --;
+                    currentPlayer.MinusOneCoin();
                     ContainCoin ++;
                     StartCoroutine(CoroutinePlayingFeedback());
                     
@@ -56,6 +56,7 @@ public class Box : InteractableObject
                 break;
         }
     }
+    public void PutInCoin(int amount)=>ContainCoin += amount;
     IEnumerator CoroutinePlayingFeedback(){
         PlayingFeedback = true;
         feedbackAnimation.Play();
@@ -63,7 +64,7 @@ public class Box : InteractableObject
         PlayingFeedback = false;
     }
     void BombTest(Player currentPlayer){
-        currentPlayer.coinAmount --;
+        currentPlayer.MinusOneCoin();
         ContainBomb = false;
 
         //To Do: 添加player被炸的feedback

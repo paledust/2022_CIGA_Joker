@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
              
         }
     }
+    public void MinusOneCoin(){if(coinAmount > 0) coinAmount --;}
     InteractableObject DetectInteractable(Ray2D ray){
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange);
         if(hit.collider!=null && hit.collider.GetComponent<InteractableObject>()){
