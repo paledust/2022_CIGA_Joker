@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //Please make sure "GameManager" is excuted before every custom script
 public class GameManager : Singleton<GameManager>
@@ -13,6 +14,8 @@ public class GameManager : Singleton<GameManager>
     private static bool isPaused = false;
     private float putCoinsTimer = 0f;
     private float gameTimer = 0f;
+    [SerializeField] private Text text;
+    [SerializeField] private Image image;
     protected override void Awake()
     {
         base.Awake();
@@ -29,11 +32,21 @@ public class GameManager : Singleton<GameManager>
         }
         if (gameTimer > 180.0f)
         {
-            Debug.Log("GameOver!");
+            GameOver();
             gameTimer = 0;
         }
     }
-    
+    public void GameOver()
+    {
+        image.color = new Color(1, 1, 1, 1);
+        text.color = new Color(0, 0, 0, 1);
+        Debug.Log("GameOver!");
+        int coin1 = player1.coinAmount;
+        int coin2 = player2.coinAmount;
+        string winner = coin1 == coin2 ? "平局" : coin1 > coin2 ? "玩家1获胜" : "玩家2获胜";
+        text.text = string.Format("游戏结束！\n({0}:{1})\n{2}！", coin1, coin2, winner);
+        
+    }
     public void SwitchingScene(string from, string to){
         if(!isSwitchingScene){
             StartCoroutine(SwitchSceneCoroutine(from, to));
