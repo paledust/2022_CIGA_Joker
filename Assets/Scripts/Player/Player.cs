@@ -103,6 +103,12 @@ public class Player : MonoBehaviour
         input.SwitchCurrentActionMap("Player");
         rpsRenderer.gameObject.SetActive(false);
     }
+    public void PauseInput(){
+        input.enabled = false;
+    }
+    public void ResumeInput(){
+        input.enabled = true;
+    }
     public void MinusOneCoin(){if(coinAmount > 0) coinAmount --;}
     InteractableObject DetectInteractable(Ray2D ray){
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange);
