@@ -7,7 +7,7 @@ public class BoxManager : MonoBehaviour
     private List<Box> allBoxes;
     [SerializeField]private int num = 3;
     public int PutNum {
-        get => Mathf.Max(num, allBoxes.Count);
+        get => Mathf.Min(num, allBoxes.Count);
     }
     // private List<Box> emptyBoxes;
     private void OnEnable() {

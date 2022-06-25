@@ -13,8 +13,9 @@ public class GameManager : Singleton<GameManager>
     public static BoxManager boxManager;
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
-    private float gameTimer = 0f;
+    public float gameTimer = 0f;
     [SerializeField] private Text gameoverText;
+    [SerializeField] private Text countdownText;
     [SerializeField] private Image gameoverImage;
     protected override void Awake()
     {
@@ -24,6 +25,8 @@ public class GameManager : Singleton<GameManager>
     }
     private void FixedUpdate() {
         gameTimer += Time.fixedDeltaTime;
+        int lastTime = ((int)(180 - gameTimer));
+        countdownText.text = $"{lastTime / 60:D2} : {lastTime % 60:D2}";
         if (gameTimer > 180.0f)
         {
             GameOver();
