@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  LifeTime: 20
+  LifeTime: 15
   currentPlayer: {fileID: 0}

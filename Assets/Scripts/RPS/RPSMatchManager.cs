@@ -53,7 +53,7 @@ public class RPSMatchManager : MonoBehaviour
             yield return new WaitForSeconds(tie_animation.clip.length);
         }
         else if(player2Choise == counterChoise(player1Choise)){
-            // m_text.text = "玩家2获胜";
+            //"玩家2获胜";
             if(!GameManager.player1.invincible && GameManager.player1.CoinAmount!=0){
                 GameManager.player2.GetCoins(GameManager.player1.CoinAmount);
                 GameManager.player1.LoseRPSTest();
@@ -67,7 +67,7 @@ public class RPSMatchManager : MonoBehaviour
             yield return new WaitForSeconds(0.8f);
         }
         else{
-            // m_text.text = "玩家1获胜";
+            //"玩家1获胜";
             if(!GameManager.player2.invincible && GameManager.player2.CoinAmount!=0){
                 GameManager.player1.GetCoins(GameManager.player2.CoinAmount);
                 GameManager.player2.LoseRPSTest();

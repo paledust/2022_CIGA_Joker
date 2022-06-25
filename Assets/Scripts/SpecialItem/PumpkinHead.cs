@@ -8,8 +8,11 @@ public class PumpkinHead : SpecialItem
     public override void Initialize(Player inputPlayer)
     {
         base.Initialize(inputPlayer);
-        currentPlayer.IncreaseSpeed(SpeedIncreaseScale);
+        currentPlayer.ChangeSpeedScale(SpeedIncreaseScale);
     }
+    void OnDestroy(){{
+        currentPlayer.ChangeSpeedScale(1);
+    }}
     void OnTriggerEnter2D(Collider2D other){
         Player player = other.GetComponent<Player>();
         if(player!=null && player != currentPlayer){

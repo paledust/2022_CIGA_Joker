@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 [Header("Item")]
     [SerializeField] private int coinAmount = 3;
     public int bombAmount = 3;
+    [SerializeField] private SpecialItem currentItem;
     [SerializeField] private Animation m_itemAmountAnimation;
     [SerializeField] private TextMesh m_itemAmountText;
 [Header("Physics")]
@@ -182,6 +183,14 @@ public class Player : MonoBehaviour
     public void NotBeInvincible(){invincible = false;}
     public void InverseControl(){Inverse = true;}
     public void UnInverseControl(){Inverse = false;}
+    public void OnGetSpecialItem(SpecialItem item){
+        if(currentItem!=null){
+            Destroy(currentItem.gameObject);
+            currentItem = null;
+        }
+
+        currentItem = item;
+    }
     public void GetPoisoned(){
         if(invincible) {
             Debug.Log($"玩家{PlayerIndex+1}当前无敌");
@@ -243,7 +252,7 @@ public class Player : MonoBehaviour
     public void MinusOneCoin(){
         if(coinAmount > 0) coinAmount --;
     }
-    public void IncreaseSpeed(float increaseScale){
+    public void ChangeSpeedScale(float increaseScale){
         SpeedMultiplier = increaseScale;
     }
     IEnumerator CoroutineRecover(){

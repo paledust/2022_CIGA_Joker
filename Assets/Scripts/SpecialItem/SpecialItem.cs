@@ -10,6 +10,7 @@ public class SpecialItem : MonoBehaviour
     protected float timer = 0;
     public virtual void Initialize(Player inputPlayer){
         currentPlayer = inputPlayer;
+        currentPlayer.OnGetSpecialItem(this);
     }
     void Update(){
         timer += Time.deltaTime;
