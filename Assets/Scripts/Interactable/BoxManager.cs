@@ -9,7 +9,7 @@ public class BoxManager : MonoBehaviour
     // private List<Box> emptyBoxes;
     private void Start() {
         allBoxes = new List<Box>(GetComponentsInChildren<Box>());
-        EventHandler.E_OnPutCoins += PutCoins;
+        EventHandler.E_OnPutCoins += PutCoins; //最好写在OnEnable以及OnDisable里面，方便注册以及注销delegate。否则在切换场景或者游戏结束时容易出现内存泄漏。
     }
 
     private void PutCoins() 

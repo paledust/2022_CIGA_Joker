@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] public int coinAmount = 3;
     [SerializeField] public int bombAmount = 3;
     [SerializeField] private CircleCollider2D m_collider;
-    public RPS_CHOISE rpsChoise = RPS_CHOISE.NONE;
+    public RPS_CHOISE rpsChoise = RPS_CHOISE.ROCK;
     private PlayerInput input; 
     private Vector2 direction;
     private Vector3 facingDirection = Vector3.up;
@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
         Player player = DetectPlayer(new Ray2D(transform.position+facingDirection*(m_collider.radius+0.01f), facingDirection));
         if(player != null){
             //To Do:开始猜拳?????
+            EventHandler.Call_OnEnterRPSMode();
             player.EnterRPSMode();
             EnterRPSMode();
         }
@@ -74,7 +75,10 @@ public class Player : MonoBehaviour
 
 // 进入猜拳模式(Rock, Paper, Sissor)
     public void EnterRPSMode(){
-        rpsChoise = RPS_CHOISE.NONE;
+        //停止角色的移动
+        direction = Vector2.zero;
+
+        rpsChoise = RPS_CHOISE.ROCK;
         input.SwitchCurrentActionMap("RPS");
     }
 // 退出猜拳模式(Rock, Paper, Sissor)

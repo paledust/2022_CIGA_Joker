@@ -15,6 +15,10 @@ public static class EventHandler
     public static void Call_OnPutCoins(){
         E_OnPutCoins?.Invoke();
     }
+    public static event Action E_OnEnterRPSMode;
+    public static void Call_OnEnterRPSMode(){
+        E_OnEnterRPSMode?.Invoke();
+    }
 }
 
 //A More Strict Event System
