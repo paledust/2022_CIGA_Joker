@@ -7,7 +7,9 @@ public class Box : InteractableObject
     [SerializeField] private int ContainCoin;
     [SerializeField] private bool ContainBomb;
     [SerializeField] private Animation feedbackAnimation;
+    [SerializeField] private Animator vfxAnimator;
     public bool IsEmpty{get{return ContainCoin==0 && !ContainBomb;}}
+    private string vfxTrigger = "Play";
     private bool PlayingFeedback = false;
     public override void OnInteract(INTERACTABLE_TYPE interactableType, Player currentPlayer)
     {
@@ -64,6 +66,7 @@ public class Box : InteractableObject
         PlayingFeedback = false;
     }
     void BombTest(Player currentPlayer){
+        vfxAnimator.SetTrigger(vfxTrigger);
         currentPlayer.GetBombed();
         currentPlayer.MinusOneCoin();
         ContainBomb = false;
