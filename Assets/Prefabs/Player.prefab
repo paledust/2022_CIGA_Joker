@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1461677801}
   - component: {fileID: 1461677802}
   - component: {fileID: 2323263001805694780}
-  - component: {fileID: 989053403852293537}
+  - component: {fileID: 5641909353495924007}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -133,10 +133,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: 1
-  MoveSpeed: 1
+  moveSpeed: 1
   detectRange: 0.2
-  CoinAmount: 3
+  coinAmount: 3
   bombAmount: 3
+  m_collider: {fileID: 5641909353495924007}
 --- !u!114 &1461677802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,8 +189,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &989053403852293537
-BoxCollider2D:
+--- !u!58 &5641909353495924007
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -202,15 +203,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.25}
-  m_EdgeRadius: 0
+  m_Radius: 0.2

@@ -17,8 +17,8 @@ public class Box : InteractableObject
 
         switch(interactableType){
             case INTERACTABLE_TYPE.PUT_IN_COIN:
-                if(currentPlayer.CoinAmount>0){
-                    currentPlayer.CoinAmount --;
+                if(currentPlayer.coinAmount>0){
+                    currentPlayer.coinAmount --;
                     ContainCoin ++;
                     StartCoroutine(CoroutinePlayingFeedback());
                     Debug.Log("有玩家放入金币");
@@ -37,14 +37,14 @@ public class Box : InteractableObject
                 break;
             case INTERACTABLE_TYPE.TAKE_OUT_STUFF:
                 if(ContainBomb[1-playerIndex]){
-                    currentPlayer.CoinAmount = currentPlayer.CoinAmount/2;
+                    currentPlayer.coinAmount = currentPlayer.coinAmount/2;
                     ContainBomb[1-playerIndex] = false;
 
                     //To Do: 添加player被炸的feedback
                     Debug.Log($"玩家{playerIndex+1}被炸弹炸了");
                 }
                 else if(ContainCoin>0){
-                    currentPlayer.CoinAmount += ContainCoin;
+                    currentPlayer.coinAmount += ContainCoin;
                     ContainCoin --;
                     Debug.Log("有玩家拿起金币");
                 }
