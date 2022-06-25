@@ -46,7 +46,7 @@ public class Box : InteractableObject
                     BombTest(currentPlayer);
                 }
                 else if(ContainCoin>0){
-                    currentPlayer.coinAmount += ContainCoin;
+                    currentPlayer.GetCoins(ContainCoin);
                     ContainCoin -= ContainCoin;
                     Debug.Log("有玩家拿起金币");
                 }
@@ -64,6 +64,7 @@ public class Box : InteractableObject
         PlayingFeedback = false;
     }
     void BombTest(Player currentPlayer){
+        currentPlayer.GetBombed();
         currentPlayer.MinusOneCoin();
         ContainBomb = false;
 

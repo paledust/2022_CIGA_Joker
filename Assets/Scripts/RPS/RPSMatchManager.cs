@@ -38,12 +38,12 @@ public class RPSMatchManager : MonoBehaviour
         }
         else if(player2Choise == counterChoise(player1Choise)){
             m_text.text = "玩家2获胜";
-            GameManager.player2.coinAmount += GameManager.player1.coinAmount;
+            if(GameManager.player1.coinAmount!=0) GameManager.player2.GetCoins(GameManager.player1.coinAmount);
             GameManager.player1.coinAmount = 0;
         }
         else{
             m_text.text = "玩家1获胜";
-            GameManager.player1.coinAmount += GameManager.player2.coinAmount;
+            if(GameManager.player2.coinAmount!=0) GameManager.player1.GetCoins(GameManager.player2.coinAmount);
             GameManager.player2.coinAmount = 0;
         }
 

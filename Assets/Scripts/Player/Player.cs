@@ -9,8 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float detectRange = 0.2f;
 [Header("Item")]
-    [SerializeField] public int coinAmount = 3;
-    [SerializeField] public int bombAmount = 3;
+    public int coinAmount = 3;
+    public int bombAmount = 3;
+    [SerializeField] private Animation m_itemAmountAnimation;
+    [SerializeField] private TextMesh m_itemAmountText;
 [Header("Physics")]
     [SerializeField] private CircleCollider2D m_collider;
 [Header("Rock Paper Sissor")]
@@ -103,13 +105,17 @@ public class Player : MonoBehaviour
         input.SwitchCurrentActionMap("Player");
         rpsRenderer.gameObject.SetActive(false);
     }
-    public void PauseInput(){
-        input.enabled = false;
-    }
-    public void ResumeInput(){
-        input.enabled = true;
+    public void PauseInput()=>input.enabled = false;
+    public void ResumeInput()=>input.enabled = true;
+    public void GetBombed(){
+        
     }
     public void MinusOneCoin(){if(coinAmount > 0) coinAmount --;}
+    public void GetCoins(int amount){
+        coinAmount += amount;
+        m_itemAmountText.text = $"+{amount}";
+        m_itemAmountAnimation.Play();
+    }
     InteractableObject DetectInteractable(Ray2D ray){
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange);
         if(hit.collider!=null && hit.collider.GetComponent<InteractableObject>()){
