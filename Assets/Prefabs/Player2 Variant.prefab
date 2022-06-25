@@ -7,21 +7,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1461677801, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
+      propertyPath: playerSpriteData
+      value: 
+      objectReference: {fileID: 11400000, guid: 43889765079e0cd4594f149526a045f8, type: 2}
     - target: {fileID: 1461677802, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_DefaultActionMap
-      value: 49eb3161-0a10-447e-a20f-3836d1de31a0
+      value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3854950122659718644, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -733413611, guid: 63e39c67c9c7dd443b494398a548b20c, type: 3}
     - target: {fileID: 3854950122659718644, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3854950122659718644, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_Color.g
-      value: 0.44672322
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3854950122659718644, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3854950123324330672, guid: 11906463d24f4b3408d0e003b2e35dfc, type: 3}
       propertyPath: m_Name

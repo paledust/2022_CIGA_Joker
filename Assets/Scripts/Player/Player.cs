@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 [Header("Basic Player Control")]
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float detectRange = 0.2f;
+    [SerializeField] private PlayerSprite_SO playerSpriteData;
 [Header("Item")]
     public int coinAmount = 3;
     public int bombAmount = 3;
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour
     public void PauseInput()=>input.enabled = false;
     public void ResumeInput()=>input.enabled = true;
     public void GetBombed(){
-        
+
     }
     public void MinusOneCoin(){if(coinAmount > 0) coinAmount --;}
     public void GetCoins(int amount){
