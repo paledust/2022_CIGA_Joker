@@ -12,6 +12,7 @@ public class BroadcastManager : MonoBehaviour
     private string historyBroadcast;
     private string newBroadcast;
     private void FixedUpdate() {
+        if (!GameManager.Instance.gameRunning)   return;
         broadcastTimer += Time.fixedDeltaTime;
         countdownText.text = $"{((int)(10 - broadcastTimer))}秒后广播为{(nextBroadcastType ? "双方金币数量" : "新物品的加入")}";
         if (broadcastTimer > 10.0f)
