@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a37589d5cabd5a449db387fa1b80686, type: 3}
+  m_Name: RPS_SO
+  m_EditorClassIdentifier: 
+  RPSData:
+  - rpsChoise: 0
+    rpsSprite: {fileID: 1765168348, guid: 4771d423f9c29734cac173ba548d1a07, type: 3}
+  - rpsChoise: 1
+    rpsSprite: {fileID: 1058809392, guid: 4771d423f9c29734cac173ba548d1a07, type: 3}
+  - rpsChoise: 2
+    rpsSprite: {fileID: 467729153, guid: 4771d423f9c29734cac173ba548d1a07, type: 3}

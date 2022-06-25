@@ -139,6 +139,8 @@ MonoBehaviour:
   coinAmount: 3
   bombAmount: 3
   m_collider: {fileID: 5641909353495924007}
+  rpsData: {fileID: 11400000, guid: 13bda27fc1ea84841831ae3b3570c252, type: 2}
+  rpsRenderer: {fileID: 4326296755894737950}
   rpsChoise: 0
 --- !u!114 &1461677802
 MonoBehaviour:
@@ -223,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4371481008929280228
 Transform:
   m_ObjectHideFlags: 0
@@ -232,7 +234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7393703615141772632}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.021, y: 0.936, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -279,9 +281,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2023835297
   m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dab2ef0f3c63cea498d638ddb80b37ec, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.07890272, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 1765168348, guid: 4771d423f9c29734cac173ba548d1a07, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

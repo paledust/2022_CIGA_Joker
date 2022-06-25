@@ -5,11 +5,17 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public int PlayerIndex = 1;
+[Header("Basic Player Control")]
     [SerializeField] private float moveSpeed = 1;
     [SerializeField] private float detectRange = 0.2f;
+[Header("Item")]
     [SerializeField] public int coinAmount = 3;
     [SerializeField] public int bombAmount = 3;
+[Header("Physics")]
     [SerializeField] private CircleCollider2D m_collider;
+[Header("Rock Paper Sissor")]
+    [SerializeField] private RPS_SO rpsData;
+    [SerializeField] private SpriteRenderer rpsRenderer;
     public RPS_CHOISE rpsChoise = RPS_CHOISE.ROCK;
     private PlayerInput input; 
     private Vector2 direction;
@@ -68,9 +74,18 @@ public class Player : MonoBehaviour
             EnterRPSMode();
         }
     }
-    void OnRock()=>rpsChoise = RPS_CHOISE.ROCK;
-    void OnPaper()=>rpsChoise = RPS_CHOISE.PAPER;
-    void OnSissor()=>rpsChoise = RPS_CHOISE.SISSOR;
+    void OnRock(){
+        rpsChoise = RPS_CHOISE.ROCK;
+        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+    }
+    void OnPaper(){
+        rpsChoise = RPS_CHOISE.PAPER;
+        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+    }
+    void OnSissor(){
+        rpsChoise = RPS_CHOISE.SISSOR;
+        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+    }
 #endregion
 
 // 进入猜拳模式(Rock, Paper, Sissor)
@@ -79,11 +94,14 @@ public class Player : MonoBehaviour
         direction = Vector2.zero;
 
         rpsChoise = RPS_CHOISE.ROCK;
+        rpsRenderer.gameObject.SetActive(true);
+        rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
         input.SwitchCurrentActionMap("RPS");
     }
 // 退出猜拳模式(Rock, Paper, Sissor)
     public void ExitRPSMode(){
         input.SwitchCurrentActionMap("Player");
+        rpsRenderer.gameObject.SetActive(false);
     }
     public void MinusOneCoin(){if(coinAmount > 0) coinAmount --;}
     InteractableObject DetectInteractable(Ray2D ray){
