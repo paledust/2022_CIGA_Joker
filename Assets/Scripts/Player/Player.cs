@@ -136,6 +136,12 @@ public class Player : MonoBehaviour
         rpsRenderer.GetComponent<Animator>().enabled = false;
         rpsRenderer.sprite = rpsData.GetRPSSprite(rpsChoise);
     }
+    public Sprite GetWinningSprite(){
+        return playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
+    }
+    public Sprite GetLosingSprite(){
+        return playerSpriteData.getFacingSprite(FACING_DIRECTION.RIGHT);
+    }
 // 进入猜拳模式(Rock, Paper, Sissor)
     public void EnterRPSMode(){
         //停止角色的移动

@@ -5,6 +5,11 @@ using UnityEngine.UI;
 public class RPSMatchManager : MonoBehaviour
 {
     [SerializeField] private Text m_text;
+    [SerializeField] private SpriteRenderer win_sprite;
+    [SerializeField] private SpriteRenderer lose_sprite;
+    [SerializeField] private GameObject win_result_obj;
+    [SerializeField] private Animator win_result_Animator;
+    [SerializeField] private string win_result_Trigger_String = "Win";
     void OnEnable(){
         EventHandler.E_OnEnterRPSMode += StartRPSMode;
     }
@@ -36,21 +41,34 @@ public class RPSMatchManager : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
 
+        m_text.text = string.Empty;
         if(player1Choise == player2Choise){
             m_text.text = "平局";
         }
         else if(player2Choise == counterChoise(player1Choise)){
-            m_text.text = "玩家2获胜";
+            // m_text.text = "玩家2获胜";
             if(GameManager.player1.coinAmount!=0) GameManager.player2.GetCoins(GameManager.player1.coinAmount);
             GameManager.player1.coinAmount = 0;
+            win_result_obj.SetActive(true);
+            win_result_Animator.SetTrigger(win_result_Trigger_String);
+            win_sprite.sprite = GameManager.player2.GetWinningSprite();
+            lose_sprite.sprite = GameManager.player1.GetWinningSprite();
+            yield return new WaitForSeconds(2.8f);
         }
         else{
-            m_text.text = "玩家1获胜";
+            // m_text.text = "玩家1获胜";
             if(GameManager.player2.coinAmount!=0) GameManager.player1.GetCoins(GameManager.player2.coinAmount);
             GameManager.player2.coinAmount = 0;
+            win_result_obj.SetActive(true);
+            win_result_Animator.SetTrigger(win_result_Trigger_String);
+            win_sprite.sprite = GameManager.player1.GetWinningSprite();
+            lose_sprite.sprite = GameManager.player2.GetWinningSprite();
+            yield return new WaitForSeconds(2.8f);
         }
 
         yield return new WaitForSeconds(1.5f);
+
+        win_result_obj.SetActive(false);
     //结束玩家的RPS MODE
         m_text.text = string.Empty;
 
