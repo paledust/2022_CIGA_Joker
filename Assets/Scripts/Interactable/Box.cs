@@ -98,5 +98,5 @@ public class Box : InteractableObject, IRPSable
         m_match_renderer.GetComponent<Animator>().Play("RPS", 0, Random.Range(0f,1f));
     }
     public void ExitRPSMode(){rpsObj.SetActive(false);}
-
+    public int GetCoins(){return ContainCoin;}
 }

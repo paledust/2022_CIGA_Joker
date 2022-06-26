@@ -5,8 +5,9 @@ using UnityEngine;
 public interface IRPSable
 {
     Sprite GetMatchSprite();
-    void ShowRPSResult();
     RPS_CHOISE GetRPSChoice();
+    int GetCoins();
+    void ShowRPSResult();
     void EnterRPSMode();
     void ExitRPSMode();
 }

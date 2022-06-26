@@ -57,7 +57,7 @@ public class RPSMatchManager : MonoBehaviour
             yield return new WaitForSeconds(tie_animation.clip.length);
         }
         else if(objChoise == counterChoise(playerChoise)){
-            //"玩家2获胜";
+            //"玩家失败";
             if(!player.invincible && player.CoinAmount!=0){
                 player.LoseCoin();
             }
@@ -70,7 +70,8 @@ public class RPSMatchManager : MonoBehaviour
             yield return new WaitForSeconds(0.8f);
         }
         else{
-            //"玩家1获胜";
+            //"玩家获胜";
+            player.GetCoins(obj.GetCoins());
             win_result_Animator.SetTrigger(win_result_Trigger_String);
             win_sprite.sprite = player.GetStateSprite(PLAYER_SPRITE_STATE.RIGHT);
             lose_sprite.sprite = obj.GetMatchSprite();
