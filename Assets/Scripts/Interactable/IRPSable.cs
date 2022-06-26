@@ -10,4 +10,5 @@ public interface IRPSable
     void ShowRPSResult();
     void EnterRPSMode();
     void ExitRPSMode();
+    void HandleWinning(int opponentCoinAmount);
 }

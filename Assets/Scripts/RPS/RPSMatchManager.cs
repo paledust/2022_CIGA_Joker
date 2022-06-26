@@ -59,6 +59,7 @@ public class RPSMatchManager : MonoBehaviour
         else if(objChoise == counterChoise(playerChoise)){
             //"玩家失败";
             if(!player.invincible && player.CoinAmount!=0){
+                obj.HandleWinning(player.CoinAmount);
                 player.LoseCoin();
             }
 

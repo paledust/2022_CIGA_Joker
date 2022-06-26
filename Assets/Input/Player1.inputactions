@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PutInCoin",
-                    "type": "Button",
-                    "id": "c772048b-675c-43e5-936c-abf265ced51b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "PutInBomb",
                     "type": "Button",
                     "id": "6b4eee52-899c-4c20-a25e-8e03fd4fe8e5",
@@ -61,17 +52,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "de82115c-6f24-423e-b4fb-393c5fb99b51",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PutInCoin",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "f0a4e4b3-f4be-4346-a7aa-c74b47845cea",

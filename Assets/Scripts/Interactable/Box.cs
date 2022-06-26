@@ -17,7 +17,6 @@ public class Box : InteractableObject, IRPSable
     [SerializeField] private RPS_CHOISE rpsChoise = RPS_CHOISE.ROCK;
     [SerializeField] private RPS_SO rpsData;
     [SerializeField] private GameObject rpsObj;
-    public bool IsEmpty{get{return ContainCoin==0 && !ContainBomb;}}
     private string vfxTrigger = "Play";
     private bool PlayingFeedback = false;
     public override void OnInteract(INTERACTABLE_TYPE interactableType, Player currentPlayer)
@@ -98,4 +97,5 @@ public class Box : InteractableObject, IRPSable
     }
     public void ExitRPSMode(){rpsObj.SetActive(false);}
     public int GetCoins(){return ContainCoin;}
+    public void HandleWinning(int opponentCoinAmount){ContainCoin ++;}
 }
