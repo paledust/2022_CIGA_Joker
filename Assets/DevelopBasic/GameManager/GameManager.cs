@@ -29,6 +29,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
+        SceneManager.LoadScene("Start");
     }
     private void Update() {
         if (!gameRunning)   return;
@@ -110,11 +111,12 @@ public class GameManager : Singleton<GameManager>
     /// <returns></returns>
     IEnumerator SwitchSceneCoroutine(string from, string to){
         isSwitchingScene = true;
-
+        FindObjectOfType<UnityEngine.EventSystems.EventSystem>().enabled = false;
         if(from != string.Empty){
             //TO DO: do something before the last scene is unloaded. e.g: call event of saving 
             yield return SceneManager.UnloadSceneAsync(from);
         }
+        yield return null;
         //TO DO: do something after the last scene is unloaded.
         yield return SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(to));

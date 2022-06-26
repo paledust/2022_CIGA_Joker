@@ -9,7 +9,7 @@ public class StartScene : MonoBehaviour
     {
         GameManager.Instance.gameTimer = 0;
         // GameManager.Instance.gameRunning = true;
-        GameManager.Instance.SwitchingScene("Start", "Level-0");
+        GameManager.Instance.SwitchingScene("Level-0");
     }
     public void ExitGame()
     {

@@ -48,8 +48,8 @@ PlayerSettings:
   m_SloganImage: {fileID: 0}
   m_SloganHeight: 150
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 800
-  defaultScreenHeight: 600
+  defaultScreenWidth: 1280
+  defaultScreenHeight: 720
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
@@ -140,10 +140,10 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   m_SupportedAspectRatios:
-    4:3: 1
+    4:3: 0
     5:4: 0
     16:10: 0
-    16:9: 0
+    16:9: 1
     Others: 0
   bundleVersion: 1.0
   preloadedAssets: []
