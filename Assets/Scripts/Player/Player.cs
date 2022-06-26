@@ -221,13 +221,13 @@ public class Player : MonoBehaviour
             StartCoroutine(coroutineRecovered);
         }
     }
-    public void DamageTest(){
+    public void DamageTest(int damageAmount=1){
         if(CanTransferDamage){
             Debug.Log($"玩家{PlayerIndex+1}转移伤害给了另一名玩家");
             EventHandler.Call_OnTransferDamage(1, this);
             return;
         }
-        LoseCoin();
+        LoseCoins(damageAmount);
     }
     public void LoseRPSTest(){
         if(CanTransferDamage){
@@ -252,13 +252,24 @@ public class Player : MonoBehaviour
         }
         coinAmount -= damage;
         coinAmount = Mathf.Max(0, coinAmount);
+        m_itemAmountText.text = $"-{damage}";
+        m_itemAmountAnimation.Play();
         StartCoroutine(coroutineBlink());
     }
     public void LooseAllCoins(){
         LoseCoins(coinAmount);
     }
     public void MinusOneCoin(){
-        if(coinAmount > 0) coinAmount --;
+        if(coinAmount > 0) {
+            coinAmount --;
+            m_itemAmountText.text = $"-1";
+            m_itemAmountAnimation.Play();
+        }
+    }
+    public void GetCoins(int amount){
+        coinAmount += amount;
+        m_itemAmountText.text = $"+{amount}";
+        m_itemAmountAnimation.Play();
     }
     public void ChangeSpeedScale(float increaseScale){
         SpeedMultiplier = increaseScale;
@@ -274,12 +285,6 @@ public class Player : MonoBehaviour
             yield return null;
         }
         playerRender.enabled = true;
-    }
-
-    public void GetCoins(int amount){
-        coinAmount += amount;
-        m_itemAmountText.text = $"+{amount}";
-        m_itemAmountAnimation.Play();
     }
     IRPSable DetectRPSable(Ray2D ray){
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange);
