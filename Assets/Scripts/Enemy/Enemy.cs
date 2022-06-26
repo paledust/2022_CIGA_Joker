@@ -91,8 +91,10 @@ public class Enemy : MonoBehaviour
         CircleCollider2D playerColl = player.gameObject.GetComponent<CircleCollider2D>();
         Vector3 enemyPos = transform.position;
         Vector3 playerPos = player.transform.position;
+        SpriteRenderer spriteRenderer = player.transform.Find("PlayerImage").GetComponent<SpriteRenderer>();
         player.ChangeSpeedScale(0f);
         playerColl.enabled = false;
+        spriteRenderer.sortingLayerName = "default";
 
         catchCoroutineTimer = 0f;
         while (catchCoroutineTimer < 5f)
@@ -113,13 +115,14 @@ public class Enemy : MonoBehaviour
         print("123!");
         goal = false;
         moveGoal = posLeftUp;
+        playerRb.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(1f);
 
-        player.ChangeSpeedScale(1f);
-        playerRb.velocity = Vector2.zero;
-        player.transform.position = playerPos;
         playerColl.enabled = true;
+        player.ChangeSpeedScale(1f);
+        player.transform.position = playerPos;
+        spriteRenderer.sortingLayerName = "MidLayer";
 
         catchPlayer = false;
         // catchCoroutine = null;
