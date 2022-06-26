@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager>
             player2.bombAmount += 3;
             bombAddTimer = gameTimer;
         }
-        if (gameTimer > 180f)
+        if (gameTimer > 120f)
         {
             GameOver();
             gameRunning = false;
