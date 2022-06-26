@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartScene : MonoBehaviour
@@ -9,7 +10,8 @@ public class StartScene : MonoBehaviour
     {
         GameManager.Instance.gameTimer = 0;
         // GameManager.Instance.gameRunning = true;
-        GameManager.Instance.SwitchingScene("Level-0");
+        // GameManager.Instance.SwitchingScene("Level-0");
+        SceneManager.LoadScene("Level-0");
     }
     public void ExitGame()
     {

@@ -72,12 +72,14 @@ public class GameManager : Singleton<GameManager>
         gameoverImage.gameObject.SetActive(false);
         gameTimer = 0;
         gameRunning = true;
-        SwitchingScene("Level-0", "Level-0");
+        // SwitchingScene("Level-0", "Level-0");
+        SceneManager.LoadScene("Level-0");
     }    
     public void Exit()
     {
         gameoverImage.gameObject.SetActive(false);
-        SwitchingScene("Level-0", "Start"); 
+        // SwitchingScene("Level-0", "Start"); 
+        SceneManager.LoadScene("Start");
     }
     public void SwitchingScene(string from, string to){
         if(!isSwitchingScene){
