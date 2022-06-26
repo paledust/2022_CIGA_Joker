@@ -77,7 +77,7 @@ public class Box : InteractableObject, IRPSable
     void BombTest(Player currentPlayer){
         vfxAnimator.SetTrigger(vfxTrigger);
         bombAnimator.SetTrigger("Bomb");
-        currentPlayer.DamageTest();
+        currentPlayer.DamageTest(2);
         ContainBomb = false;
 
         //To Do: 添加player被炸的feedback
