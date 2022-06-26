@@ -16,14 +16,23 @@ public class GameManager : Singleton<GameManager>
     public float gameTimer = 0f;
     public bool gameRunning = false;
     private bool restartFlag1, restartFlag2;
+[Header("UI")]
     [SerializeField] private Text gameoverText;
     [SerializeField] private Text countdownText;
     [SerializeField] private Image gameoverImage;
+    [SerializeField] private Text player1CandyNum, player2CandyNum;
+    [SerializeField] private Text player1ScaryNum, player2ScaryNum;
     protected override void Awake()
     {
         base.Awake();
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
+    }
+    private void Update() {
+        player1CandyNum.text = player1.CoinAmount.ToString();
+        player1ScaryNum.text = player1.bombAmount.ToString();
+        player2CandyNum.text = player2.CoinAmount.ToString();
+        player2ScaryNum.text = player2.bombAmount.ToString();
     }
     private void FixedUpdate() {
         if (!gameRunning)   return;
@@ -48,7 +57,6 @@ public class GameManager : Singleton<GameManager>
         player1.PauseInput();
         player2.PauseInput();
     }
-
     public void Restart()
     {
         gameoverImage.gameObject.SetActive(false);

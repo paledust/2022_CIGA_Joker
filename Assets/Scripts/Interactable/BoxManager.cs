@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoxManager : MonoBehaviour
 {
     private List<Box> allBoxes;
-    [SerializeField]private int num = 3;
+    private int num = 6;
     public int PutNum {
         get => Mathf.Min(num, allBoxes.Count);
     }
