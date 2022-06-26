@@ -19,6 +19,10 @@ public static class EventHandler
     public static void Call_OnEnterRPSMode(){
         E_OnEnterRPSMode?.Invoke();
     }
+    public static event Action<Player, IRPSable> E_OnEnterRPSMode_PVE;
+    public static void Call_OnEnterRPSMode_PVE(Player player, IRPSable obj){
+        E_OnEnterRPSMode_PVE?.Invoke(player, obj);
+    }
     public static event Action<int, Player> E_OnTransferDamage;
     public static void Call_OnTransferDamage(int damage, Player callPlayer){
         E_OnTransferDamage?.Invoke(damage, callPlayer);

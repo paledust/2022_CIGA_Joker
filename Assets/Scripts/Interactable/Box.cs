@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box : InteractableObject
+public class Box : InteractableObject, IRPSable
 {
     [SerializeField] private int ContainCoin;
     [SerializeField] private bool ContainBomb;
@@ -11,6 +11,11 @@ public class Box : InteractableObject
     [SerializeField] private Animator feedbackAnimator;
     [SerializeField] private Animator bombAnimator;
     [SerializeField] private Animator vfxAnimator;
+[Header("RPS Mini Game")]
+    [SerializeField] private SpriteRenderer m_match_renderer;
+    [SerializeField] private RPS_CHOISE rpsChoise = RPS_CHOISE.ROCK;
+    [SerializeField] private RPS_SO rpsData;
+    [SerializeField] private GameObject rpsObj;
     public bool IsEmpty{get{return ContainCoin==0 && !ContainBomb;}}
     private string vfxTrigger = "Play";
     private bool PlayingFeedback = false;
@@ -78,4 +83,20 @@ public class Box : InteractableObject
         //To Do: 添加player被炸的feedback
         Debug.Log($"玩家{currentPlayer.PlayerIndex+1}被炸弹炸了");
     }
+    public Sprite GetMatchSprite(){return m_match_renderer.sprite;}
+    public void ShowRPSResult(){
+        m_match_renderer.GetComponent<Animator>().enabled = false;
+        m_match_renderer.sprite = rpsData.GetRPSSprite(rpsChoise);
+    }
+    public RPS_CHOISE GetRPSChoice(){
+        rpsChoise = (RPS_CHOISE)Random.Range(0,3);
+        return rpsChoise;
+    }
+    public void EnterRPSMode(){
+        rpsObj.SetActive(true);
+        m_match_renderer.GetComponent<Animator>().enabled = true;
+        m_match_renderer.GetComponent<Animator>().Play("RPS", 0, Random.Range(0f,1f));
+    }
+    public void ExitRPSMode(){rpsObj.SetActive(false);}
+
 }

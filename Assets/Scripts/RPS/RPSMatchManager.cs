@@ -15,12 +15,79 @@ public class RPSMatchManager : MonoBehaviour
     [SerializeField] private Animation tie_animation;
     void OnEnable(){
         EventHandler.E_OnEnterRPSMode += StartRPSMode;
+        EventHandler.E_OnEnterRPSMode_PVE += StartRPSMode_PVE;
     }
     void OnDisable(){
+        EventHandler.E_OnEnterRPSMode_PVE -= StartRPSMode_PVE;
         EventHandler.E_OnEnterRPSMode += StartRPSMode;
     }
     void StartRPSMode(){
         StartCoroutine(coroutineRPSMatch());
+    }
+    void StartRPSMode_PVE(Player player, IRPSable obj){
+        StartCoroutine(coroutineRPSMatch_PVE(player, obj));
+    }
+    IEnumerator coroutineRPSMatch_PVE(Player player, IRPSable obj){
+        int count = 0;
+        for(int i=0; i<4; i++){
+            m_text.text = (3-count).ToString();
+            yield return new WaitForSeconds(1f);
+            count ++;
+        }
+
+    //To Do:宣布比赛结果
+        m_text.text = "结束!";
+
+        player.PauseInput();
+        player.ShowRPSResult();
+
+        obj.ShowRPSResult();
+
+        RPS_CHOISE playerChoise = player.rpsChoise;
+        RPS_CHOISE objChoise = obj.GetRPSChoice();
+        
+        yield return new WaitForSeconds(1f);
+
+        m_text.text = string.Empty;
+        win_result_obj.SetActive(true);
+        if(playerChoise == objChoise){
+            tie_animation.Play();
+            win_sprite.sprite = obj.GetMatchSprite();
+            lose_sprite.sprite = player.GetStateSprite(PLAYER_SPRITE_STATE.RIGHT);
+            yield return new WaitForSeconds(tie_animation.clip.length);
+        }
+        else if(objChoise == counterChoise(playerChoise)){
+            //"玩家2获胜";
+            if(!player.invincible && player.CoinAmount!=0){
+                player.LoseCoin();
+            }
+
+            win_result_Animator.SetTrigger(win_result_Trigger_String);
+            win_sprite.sprite = obj.GetMatchSprite();
+            lose_sprite.sprite = player.GetStateSprite(PLAYER_SPRITE_STATE.SAD);
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(coroutineBlinkLoser());
+            yield return new WaitForSeconds(0.8f);
+        }
+        else{
+            //"玩家1获胜";
+            win_result_Animator.SetTrigger(win_result_Trigger_String);
+            win_sprite.sprite = player.GetStateSprite(PLAYER_SPRITE_STATE.RIGHT);
+            lose_sprite.sprite = obj.GetMatchSprite();
+            yield return new WaitForSeconds(2f);
+            StartCoroutine(coroutineBlinkLoser());
+            yield return new WaitForSeconds(0.8f);
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        win_result_obj.SetActive(false);
+    //结束玩家的RPS MODE
+        m_text.text = string.Empty;
+
+        player.ResumeInput();
+        player.ExitRPSMode();
+        obj.ExitRPSMode();
     }
     IEnumerator coroutineRPSMatch(){
         int count = 0;
@@ -92,7 +159,6 @@ public class RPSMatchManager : MonoBehaviour
 
         GameManager.player1.ExitRPSMode();
         GameManager.player2.ExitRPSMode();
-
     }
     RPS_CHOISE counterChoise(RPS_CHOISE currentChoise){
         switch (currentChoise){

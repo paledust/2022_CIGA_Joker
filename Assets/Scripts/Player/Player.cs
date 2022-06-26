@@ -132,13 +132,21 @@ public class Player : MonoBehaviour
         }
     }
     void OnAttack(InputValue value){
-        //To Do:检测有无可以攻击的玩家
-        Player player = DetectPlayer(new Ray2D(transform.position+facingDirection*(m_collider.radius+0.01f), facingDirection));
+        //To Do:检测有无可以划拳的玩家
+        Ray2D ray = new Ray2D(transform.position+facingDirection*(m_collider.radius+0.01f), facingDirection);
+
+        Player player = DetectPlayer(ray);
+        IRPSable obj = DetectRPSable(ray);
         if(player != null){
             //To Do:开始猜拳?????
             EventHandler.Call_OnEnterRPSMode();
             player.EnterRPSMode();
             EnterRPSMode();
+        }
+        else if(obj!=null){
+            EventHandler.Call_OnEnterRPSMode_PVE(this, obj);
+            EnterRPSMode();
+            obj.EnterRPSMode();
         }
     }
     void OnRock(){
@@ -272,6 +280,13 @@ public class Player : MonoBehaviour
         coinAmount += amount;
         m_itemAmountText.text = $"+{amount}";
         m_itemAmountAnimation.Play();
+    }
+    IRPSable DetectRPSable(Ray2D ray){
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange);
+        if(hit.collider!=null && hit.collider.GetComponent<IRPSable>()!=null){
+            return hit.collider.GetComponent<IRPSable>();
+        }
+        return null;        
     }
     InteractableObject DetectInteractable(Ray2D ray){
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, detectRange);
