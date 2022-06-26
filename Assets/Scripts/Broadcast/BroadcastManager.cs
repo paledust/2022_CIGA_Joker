@@ -17,13 +17,13 @@ public class BroadcastManager : MonoBehaviour
         // countdownText.text = $"{((int)(10 - broadcastTimer))}秒后广播为{(nextBroadcastType ? "双方金币数量" : "新物品的加入")}";
         if (broadcastTimer > 5.0f)
         {
-            historyBroadcast += newBroadcast;
-            int time = ((int)GameManager.Instance.gameTimer);
-            EventHandler.Call_OnPutCoins();
-            BoxManager boxManager = GameManager.boxManager;
-            newBroadcast = $"[{time / 60:D2} : {time % 60:D2}]\n有{boxManager.PutNum}个盒子新放入了新的糖果！！！！快来拿啊！！！\n";
-            broadcastText.text = "<color=#8C8C8C>" + historyBroadcast + "</color>" + newBroadcast;
-            broadcastTimer = 0;
+            // historyBroadcast += newBroadcast;
+            // int time = ((int)GameManager.Instance.gameTimer);
+            // EventHandler.Call_OnPutCoins();
+            // BoxManager boxManager = GameManager.boxManager;
+            // newBroadcast = $"[{time / 60:D2} : {time % 60:D2}]\n有{boxManager.PutNum}个盒子新放入了新的糖果！！！！快来拿啊！！！\n";
+            // broadcastText.text = "<color=#8C8C8C>" + historyBroadcast + "</color>" + newBroadcast;
+            // broadcastTimer = 0;
         }
     }
 }

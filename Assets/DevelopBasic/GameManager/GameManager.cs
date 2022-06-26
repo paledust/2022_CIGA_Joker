@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
     public float gameTimer = 0f;
+    public float bombAddTimer = 0f;
     public bool gameRunning = false;
     private bool restartFlag1, restartFlag2;
 [Header("UI")]
@@ -39,6 +40,12 @@ public class GameManager : Singleton<GameManager>
         gameTimer += Time.fixedDeltaTime;
         int lastTime = ((int)(180 - gameTimer));
         countdownText.text = $"{lastTime / 60:D2} : {lastTime % 60:D2}";
+        if (gameTimer - bombAddTimer > 10f)
+        {
+            player1.bombAmount += 3;
+            player2.bombAmount += 3;
+            bombAddTimer = gameTimer;
+        }
         if (gameTimer > 180f)
         {
             GameOver();
