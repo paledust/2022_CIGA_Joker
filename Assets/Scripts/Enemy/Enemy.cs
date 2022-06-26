@@ -112,20 +112,18 @@ public class Enemy : MonoBehaviour
             playerRb.velocity = rb.velocity;
             yield return 0;
         }
-        print("123!");
         goal = false;
         moveGoal = posLeftUp;
         playerRb.velocity = Vector2.zero;
+        player.transform.position = playerPos;
 
         yield return new WaitForSeconds(1f);
 
         playerColl.enabled = true;
         player.ChangeSpeedScale(1f);
-        player.transform.position = playerPos;
         spriteRenderer.sortingLayerName = "MidLayer";
 
         catchPlayer = false;
-        // catchCoroutine = null;
     }
     private void OnTriggerExit2D(Collider2D other) {
         
