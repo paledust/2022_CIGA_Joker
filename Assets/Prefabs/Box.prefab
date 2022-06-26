@@ -83,7 +83,8 @@ MonoBehaviour:
   feedbackAnimator: {fileID: 6213329442568237777}
   bombAnimator: {fileID: 1328250729548251342}
   vfxAnimator: {fileID: 7564246314495185744}
-  m_match_renderer: {fileID: 274215819641460604}
+  m_match_renderer: {fileID: 4184340887704464877}
+  m_rpschoise_renderer: {fileID: 274215819641460604}
   rpsChoise: 0
   rpsData: {fileID: 11400000, guid: 13bda27fc1ea84841831ae3b3570c252, type: 2}
   rpsObj: {fileID: 5634311493691026275}

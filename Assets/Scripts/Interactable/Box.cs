@@ -13,6 +13,7 @@ public class Box : InteractableObject, IRPSable
     [SerializeField] private Animator vfxAnimator;
 [Header("RPS Mini Game")]
     [SerializeField] private SpriteRenderer m_match_renderer;
+    [SerializeField] private SpriteRenderer m_rpschoise_renderer;
     [SerializeField] private RPS_CHOISE rpsChoise = RPS_CHOISE.ROCK;
     [SerializeField] private RPS_SO rpsData;
     [SerializeField] private GameObject rpsObj;
@@ -85,17 +86,15 @@ public class Box : InteractableObject, IRPSable
     }
     public Sprite GetMatchSprite(){return m_match_renderer.sprite;}
     public void ShowRPSResult(){
-        m_match_renderer.GetComponent<Animator>().enabled = false;
-        m_match_renderer.sprite = rpsData.GetRPSSprite(rpsChoise);
-    }
-    public RPS_CHOISE GetRPSChoice(){
         rpsChoise = (RPS_CHOISE)Random.Range(0,3);
-        return rpsChoise;
+        m_rpschoise_renderer.GetComponent<Animator>().enabled = false;
+        m_rpschoise_renderer.sprite = rpsData.GetRPSSprite(rpsChoise);
     }
+    public RPS_CHOISE GetRPSChoice(){return rpsChoise;}
     public void EnterRPSMode(){
         rpsObj.SetActive(true);
-        m_match_renderer.GetComponent<Animator>().enabled = true;
-        m_match_renderer.GetComponent<Animator>().Play("RPS", 0, Random.Range(0f,1f));
+        m_rpschoise_renderer.GetComponent<Animator>().enabled = true;
+        m_rpschoise_renderer.GetComponent<Animator>().Play("RPS", 0, Random.Range(0f,1f));
     }
     public void ExitRPSMode(){rpsObj.SetActive(false);}
     public int GetCoins(){return ContainCoin;}
