@@ -13,5 +13,6 @@ public class Main : MonoBehaviour
         GameManager.player1 = player1;
         GameManager.player2 = player2;
         GameManager.boxManager = boxManager;
+        GameManager.gameRunning = true;
     }
 }

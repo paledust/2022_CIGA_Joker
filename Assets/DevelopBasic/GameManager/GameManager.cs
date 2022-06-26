@@ -11,12 +11,12 @@ public class GameManager : Singleton<GameManager>
     public static Player player1;
     public static Player player2;
     public static BoxManager boxManager;
+    public static bool gameRunning = false;
     private static bool isSwitchingScene = false;
     private static bool isPaused = false;
     public float gameTimer = 0f;
     private float totalTime = 120f;
     public float bombAddTimer = 0f;
-    public bool gameRunning = false;
     private bool restartFlag1, restartFlag2;
 [Header("UI")]
     [SerializeField] private Text gameoverText;
@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
     private void Update() {
+        if (!gameRunning)   return;
         player1CandyNum.text = player1.CoinAmount.ToString();
         player1ScaryNum.text = player1.bombAmount.ToString();
         player2CandyNum.text = player2.CoinAmount.ToString();

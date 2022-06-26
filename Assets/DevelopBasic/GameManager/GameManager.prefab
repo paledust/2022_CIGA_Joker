@@ -1193,7 +1193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimer: 0
   bombAddTimer: 0
-  gameRunning: 0
   gameoverText: {fileID: 8433196100919924145}
   countdownText: {fileID: 2977482233946497534}
   gameoverImage: {fileID: 8122758737979988608}
@@ -1448,10 +1447,10 @@ RectTransform:
   m_Father: {fileID: 305041714606470820}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.119190484, y: 0.148}
-  m_AnchorMax: {x: 0.885762, y: 0.5}
-  m_AnchoredPosition: {x: -0.5, y: -0.87670135}
-  m_SizeDelta: {x: -1, y: -2.8465}
+  m_AnchorMin: {x: 0.1192381, y: 0.32900003}
+  m_AnchorMax: {x: 0.88100004, y: 0.65400004}
+  m_AnchoredPosition: {x: 0, y: -0.29999924}
+  m_SizeDelta: {x: 0, y: 0.1534996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6472951627904600844
 CanvasRenderer:
